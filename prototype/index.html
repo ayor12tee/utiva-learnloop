@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Africa's first localized e-learning marketplace for English-speaking Africa. Learn skills that pay. Pay with mobile money. Learn offline."/>
+<title>LearnLoop — Learn Skills That Pay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1E3A5F;--orange:#F5A623;--orange-light:#FEF3DC;
+  --teal:#0D6E6E;--teal-light:#D0EAEA;--green:#1B7A4A;--green-light:#E8F5EE;
+  --bg:#F7F8FA;--white:#fff;--gray:#64748B;--gray-light:#F1F3F5;--border:#E2E8F0;
+  --text:#1A1A1A;--radius:16px;--shadow:0 4px 20px rgba(0,0,0,.06);--shadow-lg:0 12px 40px rgba(0,0,0,.15);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{display:block;}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── NAV ── */
+nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.2);}
+.nav-logo{font-size:22px;font-weight:900;color:#fff;letter-spacing:-0.5px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:8px;user-select:none;}
+.nav-logo:hover{opacity:.85;}
+.nav-logo span{color:var(--orange);}
+.logo-icon{width:34px;height:34px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.nav-links{display:flex;gap:4px;align-items:center;}
+.nav-links a{color:rgba(255,255,255,.8);font-size:14px;font-weight:500;padding:7px 12px;border-radius:8px;cursor:pointer;transition:.2s;}
+.nav-links a:hover,.nav-links a.active{color:#fff;background:rgba(255,255,255,.12);}
+
+/* Country picker */
+.country-picker{position:relative;}
+.country-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;font-family:'Inter',sans-serif;transition:.2s;}
+.country-btn:hover{background:rgba(255,255,255,.18);}
+.country-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:var(--white);border-radius:14px;box-shadow:0 12px 48px rgba(0,0,0,.18);min-width:240px;max-height:400px;overflow-y:auto;display:none;z-index:300;border:1px solid var(--border);}
+.country-dropdown.open{display:block;animation:fadeIn .2s ease;}
+.cd-header{padding:12px 16px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);}
+.cd-item{display:flex;align-items:center;gap:10px;padding:10px 16px;cursor:pointer;transition:.15s;font-size:14px;}
+.cd-item:hover{background:var(--gray-light);}
+.cd-item.active{background:var(--teal-light);color:var(--teal);font-weight:600;}
+.cd-flag{font-size:20px;flex-shrink:0;}
+.cd-info{flex:1;}
+.cd-country{font-weight:600;color:var(--navy);font-size:13px;}
+.cd-currency{font-size:11px;color:var(--gray);}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--orange);color:var(--navy);}
+.btn-primary:hover{background:#e09710;box-shadow:0 4px 16px rgba(245,166,35,.4);}
+.btn-secondary{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);}
+.btn-secondary:hover{background:rgba(255,255,255,.25);}
+.btn-outline{background:transparent;color:var(--navy);border:2px solid var(--navy);}
+.btn-outline:hover{background:var(--navy);color:#fff;}
+.btn-teal{background:var(--teal);color:#fff;}
+.btn-teal:hover{background:#0a5a5a;}
+.btn-sm{padding:6px 14px;font-size:13px;}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg, #0F2027 0%, #203A43 50%, #2C5364 100%);padding:80px 24px 90px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:.15;pointer-events:none;}
+.hero-orb-1{width:450px;height:450px;background:var(--orange);top:-120px;right:-80px;animation:float 7s ease-in-out infinite;}
+.hero-orb-2{width:350px;height:350px;background:#00b4d8;bottom:-120px;left:-60px;animation:float 7s ease-in-out infinite 3.5s;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+.hero-content{position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,166,35,.15);color:var(--orange);border:1px solid rgba(245,166,35,.35);padding:7px 18px;border-radius:24px;font-size:13px;font-weight:600;margin-bottom:24px;}
+.hero h1{font-size:clamp(36px,5.5vw,66px);font-weight:900;color:#fff;line-height:1.08;margin-bottom:20px;max-width:800px;margin-left:auto;margin-right:auto;letter-spacing:-2px;}
+.hero h1 .nowrap{white-space:nowrap;}
+.hero h1 span{color:var(--orange);}
+.hero p{font-size:18px;color:rgba(255,255,255,.8);max-width:540px;margin:0 auto 40px;line-height:1.65;}
+.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.hero-actions .btn{font-size:16px;padding:14px 32px;}
+.hero-stats{display:flex;justify-content:center;margin-top:60px;flex-wrap:wrap;background:rgba(255,255,255,.07);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);border-radius:16px;max-width:680px;margin-left:auto;margin-right:auto;overflow:hidden;}
+.hero-stat{text-align:center;flex:1;padding:20px 14px;border-right:1px solid rgba(255,255,255,.1);}
+.hero-stat:last-child{border:none;}
+.hero-stat .num{font-size:24px;font-weight:800;color:#fff;}
+.hero-stat .lbl{font-size:11px;color:rgba(255,255,255,.55);margin-top:3px;font-weight:500;}
+
+/* ── TRUST STRIP ── */
+.trust-strip{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;overflow-x:auto;}
+.trust-inner{display:flex;align-items:center;gap:24px;max-width:1100px;margin:0 auto;font-size:13px;color:var(--gray);font-weight:500;white-space:nowrap;}
+.trust-inner span{display:flex;align-items:center;gap:5px;}
+.trust-divider{width:1px;height:18px;background:var(--border);flex-shrink:0;}
+
+/* ── LAYOUT ── */
+.section{padding:60px 24px;}
+.section-header{text-align:center;margin-bottom:44px;}
+.section-header h2{font-size:30px;font-weight:800;color:var(--navy);margin-bottom:10px;letter-spacing:-0.5px;}
+.section-header p{color:var(--gray);font-size:16px;max-width:480px;margin:0 auto;}
+.container{max-width:1100px;margin:0 auto;}
+
+/* ── COUNTRY GRID ── */
+.country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;}
+.country-card{background:var(--white);border-radius:12px;padding:16px 12px;text-align:center;box-shadow:var(--shadow);cursor:pointer;transition:all .22s;border:2px solid transparent;}
+.country-card:hover,.country-card.selected{border-color:var(--teal);transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.country-card.selected{background:var(--teal-light);}
+.cc-flag{font-size:32px;margin-bottom:6px;}
+.cc-name{font-size:13px;font-weight:700;color:var(--navy);}
+.cc-currency{font-size:11px;color:var(--gray);margin-top:2px;}
+.cc-mobile{font-size:10px;color:var(--teal);margin-top:4px;font-weight:600;}
+
+/* ── CATEGORIES ── */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;}
+.cat-card{background:var(--white);border-radius:14px;padding:22px 10px;text-align:center;box-shadow:var(--shadow);cursor:pointer;transition:all .22s;border:2px solid transparent;}
+.cat-card:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.cat-card .cat-icon{font-size:36px;margin-bottom:8px;}
+.cat-card .cat-name{font-size:13px;font-weight:700;color:var(--navy);}
+.cat-card .cat-count{font-size:11px;color:var(--gray);margin-top:2px;}
+
+/* ── FEATURES ── */
+.features-strip{background:linear-gradient(135deg,var(--navy),#1a4a8a);padding:60px 24px;position:relative;overflow:hidden;}
+.features-strip::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(13,110,110,.3),transparent 60%);}
+.features-strip h2{color:#fff;text-align:center;font-size:28px;font-weight:800;margin-bottom:44px;position:relative;letter-spacing:-0.5px;}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px;max-width:1100px;margin:0 auto;position:relative;}
+.feat-item{padding:24px 20px;background:rgba(255,255,255,.07);border-radius:16px;border:1px solid rgba(255,255,255,.1);transition:.22s;}
+.feat-item:hover{background:rgba(255,255,255,.12);transform:translateY(-4px);}
+.feat-icon{font-size:36px;margin-bottom:12px;}
+.feat-title{font-weight:700;color:#fff;margin-bottom:6px;font-size:15px;}
+.feat-desc{font-size:13px;color:rgba(255,255,255,.62);line-height:1.55;}
+
+/* ── HOW IT WORKS ── */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:860px;margin:0 auto;}
+.how-item{text-align:center;}
+.how-num{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--navy),#2a5298);color:#fff;font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;box-shadow:0 6px 20px rgba(30,58,95,.25);}
+.how-item h3{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.how-item p{font-size:13px;color:var(--gray);line-height:1.6;}
+
+/* ── TESTIMONIALS ── */
+.testimonial-slider{position:relative;overflow:hidden;max-width:860px;margin:0 auto;}
+.testimonial-track{display:flex;transition:transform .5s cubic-bezier(.25,.46,.45,.94);}
+.testimonial-slide{min-width:100%;padding:0 4px;}
+.testimonial-card{background:var(--white);border-radius:20px;padding:32px;box-shadow:var(--shadow-lg);}
+.t-stars{color:var(--orange);font-size:20px;margin-bottom:12px;}
+.t-quote{font-size:16px;color:var(--text);line-height:1.7;margin-bottom:22px;font-style:italic;}
+.t-author{display:flex;align-items:center;gap:14px;}
+.t-avatar{width:50px;height:50px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+.t-name{font-weight:700;font-size:15px;color:var(--navy);}
+.t-role{font-size:13px;color:var(--gray);}
+.slider-dots{display:flex;justify-content:center;gap:8px;margin-top:22px;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:.25s;}
+.dot.active{background:var(--navy);width:24px;border-radius:4px;}
+.slider-arrows{display:flex;justify-content:center;gap:12px;margin-top:12px;}
+.slider-arrow{width:42px;height:42px;border-radius:50%;background:var(--white);border:2px solid var(--border);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.slider-arrow:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+/* ── CARDS ── */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px;}
+.card{background:var(--white);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;transition:all .25s;cursor:pointer;border:1px solid transparent;}
+.card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.12);border-color:rgba(13,110,110,.15);}
+.card-thumb{height:185px;width:100%;overflow:hidden;position:relative;background:var(--gray-light);}
+.card-thumb img{width:100%;height:100%;object-fit:cover;transition:.35s;}
+.card:hover .card-thumb img{transform:scale(1.06);}
+.card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent);opacity:0;transition:.3s;}
+.card:hover .card-overlay{opacity:1;}
+.play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:.3s;}
+.card:hover .play-overlay{opacity:1;}
+.play-circle{width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 20px rgba(0,0,0,.3);}
+.card-body{padding:16px;}
+.card-cat{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--teal);margin-bottom:5px;}
+.card-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:5px;line-height:1.4;}
+.card-instructor{font-size:12px;color:var(--gray);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.card-instructor img{width:20px;height:20px;border-radius:50%;object-fit:cover;}
+.card-meta{display:flex;align-items:center;justify-content:space-between;}
+.stars{color:var(--orange);font-size:12px;}
+.rating{font-size:12px;color:var(--gray);margin-left:3px;}
+.price{font-size:17px;font-weight:800;color:var(--navy);}
+.price-old{font-size:12px;color:var(--gray);text-decoration:line-through;margin-right:4px;}
+.badge{display:inline-block;padding:2px 7px;border-radius:4px;font-size:11px;font-weight:700;}
+.badge-orange{background:var(--orange-light);color:#b87800;}
+.badge-teal{background:var(--teal-light);color:var(--teal);}
+.badge-green{background:var(--green-light);color:var(--green);}
+.badge-navy{background:#E8EDF4;color:var(--navy);}
+
+/* ── COURSE DETAIL ── */
+.detail-hero{background:linear-gradient(135deg,var(--navy),#1a4a8a);padding:44px 24px;color:#fff;}
+.detail-hero .breadcrumb{font-size:13px;color:rgba(255,255,255,.55);margin-bottom:12px;cursor:pointer;transition:.2s;}
+.detail-hero .breadcrumb:hover{color:rgba(255,255,255,.9);}
+.detail-hero .breadcrumb span{color:var(--orange);}
+.detail-hero h1{font-size:28px;font-weight:800;margin-bottom:12px;max-width:700px;line-height:1.25;letter-spacing:-0.5px;}
+.detail-hero p{font-size:15px;color:rgba(255,255,255,.8);max-width:600px;line-height:1.65;margin-bottom:20px;}
+.detail-meta{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:rgba(255,255,255,.7);}
+.detail-meta strong{color:#fff;}
+.detail-layout{display:grid;grid-template-columns:1fr 330px;gap:28px;max-width:1100px;margin:0 auto;padding:32px 24px;align-items:start;}
+.detail-sidebar{background:var(--white);border-radius:16px;box-shadow:var(--shadow-lg);overflow:hidden;position:sticky;top:76px;}
+.sidebar-thumb{height:165px;overflow:hidden;}
+.sidebar-thumb img{width:100%;height:100%;object-fit:cover;}
+.sidebar-body{padding:20px;}
+.sidebar-price{font-size:32px;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.sidebar-price-old{font-size:13px;color:var(--gray);text-decoration:line-through;margin-bottom:14px;}
+.sidebar-actions{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;}
+.sidebar-features{list-style:none;}
+.sidebar-features li{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--gray);}
+.sidebar-features li:last-child{border:none;}
+.tab-bar{display:flex;border-bottom:2px solid var(--border);margin-bottom:22px;overflow-x:auto;}
+.tab{padding:11px 18px;font-size:14px;font-weight:600;color:var(--gray);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:.2s;white-space:nowrap;}
+.tab.active{color:var(--navy);border-color:var(--navy);}
+.tab-content{display:none;}
+.tab-content.active{display:block;animation:fadeIn .25s ease;}
+.curriculum-item{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--gray-light);border-radius:10px;margin-bottom:8px;cursor:pointer;transition:.2s;}
+.curriculum-item:hover{background:#e4e8ed;}
+.ci-left{display:flex;align-items:center;gap:10px;font-size:13px;}
+.avatar{border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;flex-shrink:0;}
+.avatar img{width:100%;height:100%;object-fit:cover;}
+
+/* ── CHECKOUT ── */
+.checkout-wrap{max-width:640px;margin:0 auto;padding:36px 24px;}
+.checkout-card{background:var(--white);border-radius:16px;box-shadow:var(--shadow-lg);overflow:hidden;}
+.checkout-header{background:linear-gradient(135deg,var(--navy),#1a4a8a);padding:22px 24px;color:#fff;}
+.checkout-header h2{font-size:20px;font-weight:800;}
+.checkout-body{padding:24px;}
+.order-summary{background:var(--gray-light);border-radius:10px;padding:16px;margin-bottom:22px;}
+.order-row{display:flex;justify-content:space-between;font-size:14px;padding:4px 0;}
+.order-total{font-weight:800;font-size:17px;border-top:2px solid var(--border);margin-top:10px;padding-top:10px;}
+.payment-methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.pm-option{border:2px solid var(--border);border-radius:10px;padding:14px 10px;cursor:pointer;text-align:center;transition:.2s;}
+.pm-option:hover{border-color:var(--teal);}
+.pm-option.selected{border-color:var(--teal);background:var(--teal-light);}
+.pm-icon{font-size:26px;margin-bottom:5px;}
+.pm-label{font-size:12px;font-weight:700;color:var(--navy);}
+.pm-sub{font-size:10px;color:var(--gray);}
+.form-group{margin-bottom:16px;}
+.form-label{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:5px;display:block;}
+.form-input{width:100%;padding:11px 14px;border:2px solid var(--border);border-radius:10px;font-size:14px;outline:none;transition:.2s;font-family:'Inter',sans-serif;}
+.form-input:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(13,110,110,.08);}
+.form-input.error{border-color:#e53e3e;}
+.form-error{font-size:12px;color:#e53e3e;margin-top:4px;display:none;}
+.form-select{width:100%;padding:11px 14px;border:2px solid var(--border);border-radius:10px;font-size:14px;outline:none;background:var(--white);appearance:none;cursor:pointer;font-family:'Inter',sans-serif;}
+.form-select:focus{border-color:var(--teal);}
+
+/* ── DASHBOARD ── */
+.dash-header{background:linear-gradient(135deg,var(--navy),#1a4a8a);padding:32px 24px;color:#fff;}
+.dash-wrap{max-width:1100px;margin:0 auto;padding:32px 24px;}
+.dash-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin-bottom:28px;}
+.stat-card{background:var(--white);border-radius:14px;padding:20px;box-shadow:var(--shadow);transition:.2s;}
+.stat-card:hover{box-shadow:var(--shadow-lg);}
+.stat-card .s-icon{font-size:28px;margin-bottom:8px;}
+.stat-card .s-num{font-size:26px;font-weight:800;color:var(--navy);}
+.stat-card .s-lbl{font-size:12px;color:var(--gray);margin-top:2px;}
+.course-progress-card{background:var(--white);border-radius:14px;padding:18px;box-shadow:var(--shadow);display:flex;gap:14px;align-items:center;cursor:pointer;transition:.2s;margin-bottom:12px;border:1px solid transparent;}
+.course-progress-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--teal-light);}
+.cp-thumb{width:76px;height:56px;border-radius:8px;flex-shrink:0;overflow:hidden;}
+.cp-thumb img{width:100%;height:100%;object-fit:cover;}
+.cp-info{flex:1;}
+.cp-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.cp-sub{font-size:12px;color:var(--gray);margin-bottom:8px;}
+.progress-bar{height:6px;background:var(--border);border-radius:4px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),#12a3a3);border-radius:4px;width:0;transition:width 1s cubic-bezier(.25,.46,.45,.94);}
+.cp-pct{font-size:12px;font-weight:700;color:var(--teal);margin-top:4px;}
+.cp-action{font-size:13px;font-weight:600;color:var(--teal);white-space:nowrap;}
+
+/* ── VIDEO PLAYER ── */
+.player-wrap{display:grid;grid-template-columns:1fr 310px;min-height:calc(100vh - 64px);}
+.player-main{background:#0a0a0a;}
+.video-area{width:100%;aspect-ratio:16/9;background:#111;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;cursor:pointer;}
+.video-area img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;}
+.video-placeholder{text-align:center;color:#fff;position:relative;z-index:1;}
+.play-btn-big{width:78px;height:78px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 12px;cursor:pointer;transition:.2s;border:2px solid rgba(255,255,255,.3);}
+.play-btn-big:hover{background:rgba(255,255,255,.25);transform:scale(1.08);}
+.video-controls{background:#1a1a1a;padding:12px 18px;display:flex;align-items:center;gap:12px;}
+.vc-progress{flex:1;height:5px;background:#333;border-radius:3px;cursor:pointer;}
+.vc-fill{width:35%;height:100%;background:var(--orange);border-radius:3px;pointer-events:none;}
+.vc-time{font-size:12px;color:rgba(255,255,255,.5);white-space:nowrap;}
+.vc-btn{background:none;border:none;color:#fff;font-size:17px;cursor:pointer;opacity:.7;transition:.2s;padding:4px;}
+.vc-btn:hover{opacity:1;}
+.player-info{padding:18px;background:#111;border-top:1px solid #222;}
+.player-info h3{font-size:16px;font-weight:700;color:#fff;margin-bottom:5px;}
+.player-info p{font-size:13px;color:rgba(255,255,255,.45);}
+.player-sidebar{background:var(--white);overflow-y:auto;}
+.ps-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.ps-header h3{font-size:14px;font-weight:700;color:var(--navy);}
+.lesson-item{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:.15s;}
+.lesson-item:hover{background:var(--gray-light);}
+.lesson-item.active{background:var(--teal-light);border-left:3px solid var(--teal);}
+.lesson-item.completed .li-num{background:var(--teal);color:#fff;}
+.li-num{width:26px;height:26px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gray);flex-shrink:0;}
+.li-info{flex:1;}
+.li-title{font-size:13px;font-weight:600;color:var(--navy);}
+.li-meta{font-size:11px;color:var(--gray);margin-top:1px;}
+.download-toast{position:fixed;bottom:24px;right:24px;background:var(--navy);color:#fff;padding:14px 20px;border-radius:12px;display:flex;align-items:center;gap:10px;font-size:14px;box-shadow:0 8px 32px rgba(0,0,0,.25);z-index:999;transform:translateY(80px);opacity:0;transition:.3s;}
+.download-toast.show{transform:translateY(0);opacity:1;}
+
+/* ── INSTRUCTOR ── */
+.inst-header{background:linear-gradient(135deg,var(--navy),#1a4a8a);padding:32px 24px;color:#fff;}
+.inst-wrap{max-width:1100px;margin:0 auto;padding:32px 24px;}
+.revenue-card{background:linear-gradient(135deg,var(--teal),#0a5a5a);border-radius:16px;padding:26px;color:#fff;margin-bottom:22px;}
+.rv-amount{font-size:42px;font-weight:900;margin:6px 0;letter-spacing:-1px;}
+.mini-chart{display:flex;align-items:flex-end;gap:6px;height:60px;margin-top:18px;}
+.bar{background:rgba(255,255,255,.25);border-radius:4px 4px 0 0;flex:1;transition:all .3s;cursor:pointer;}
+.bar:hover{background:rgba(255,255,255,.5);}
+.course-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--border);}
+.course-row:last-child{border:none;}
+.cr-thumb{width:60px;height:44px;border-radius:7px;overflow:hidden;flex-shrink:0;}
+.cr-thumb img{width:100%;height:100%;object-fit:cover;}
+
+/* ── AUTH ── */
+.auth-wrap{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:28px 24px;background:linear-gradient(135deg,#eef2f7,#e2e8f0);}
+.auth-card{background:var(--white);border-radius:20px;box-shadow:0 8px 48px rgba(0,0,0,.1);padding:40px;width:100%;max-width:460px;}
+.auth-card h2{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:5px;}
+.auth-card > p{font-size:14px;color:var(--gray);margin-bottom:24px;}
+.auth-toggle{display:flex;background:var(--gray-light);border-radius:10px;padding:4px;margin-bottom:22px;}
+.at-btn{flex:1;padding:9px;text-align:center;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s;color:var(--gray);}
+.at-btn.active{background:var(--white);color:var(--navy);box-shadow:0 2px 8px rgba(0,0,0,.1);}
+.otp-box{display:flex;gap:10px;justify-content:center;margin-bottom:22px;}
+.otp-digit{width:52px;height:56px;border:2px solid var(--border);border-radius:10px;text-align:center;font-size:24px;font-weight:700;outline:none;color:var(--navy);font-family:'Inter',sans-serif;transition:.2s;}
+.otp-digit:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(13,110,110,.08);}
+.divider{display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--gray);font-size:13px;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ── BROWSE ── */
+.browse-hero{background:linear-gradient(135deg,var(--navy),#1a4a8a);padding:36px 24px;}
+.browse-hero h2{font-size:26px;font-weight:800;color:#fff;margin-bottom:6px;}
+.search-bar{display:flex;max-width:560px;box-shadow:0 4px 24px rgba(0,0,0,.2);}
+.search-bar input{flex:1;padding:13px 18px;border:none;border-radius:10px 0 0 10px;font-size:14px;outline:none;font-family:'Inter',sans-serif;}
+.search-bar button{padding:13px 20px;background:var(--orange);color:var(--navy);border:none;border-radius:0 10px 10px 0;font-weight:700;cursor:pointer;font-size:14px;font-family:'Inter',sans-serif;transition:.2s;}
+.search-bar button:hover{background:#e09710;}
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--border);margin-bottom:20px;}
+.filter-chip{padding:6px 14px;border-radius:20px;border:1px solid var(--border);font-size:13px;cursor:pointer;background:var(--white);transition:.2s;font-weight:500;}
+.filter-chip:hover,.filter-chip.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.browse-layout{display:grid;grid-template-columns:210px 1fr;gap:28px;max-width:1100px;margin:0 auto;padding:28px 24px;}
+.sf-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:8px;margin-top:20px;}
+.sf-title:first-child{margin-top:0;}
+.sf-option{display:flex;align-items:center;gap:8px;padding:6px 0;cursor:pointer;font-size:13px;}
+.sf-option input{accent-color:var(--teal);}
+
+/* ── SUCCESS ── */
+.success-wrap{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:28px 24px;}
+.success-card{background:var(--white);border-radius:20px;box-shadow:0 8px 48px rgba(0,0,0,.1);padding:48px 40px;width:100%;max-width:500px;text-align:center;}
+.success-icon{font-size:68px;margin-bottom:14px;animation:pop .5s cubic-bezier(.34,1.56,.64,1);}
+@keyframes pop{from{transform:scale(.3)}to{transform:scale(1)}}
+
+/* ── TOAST ── */
+.toast{position:fixed;top:80px;right:24px;background:var(--green);color:#fff;padding:13px 20px;border-radius:12px;font-size:14px;font-weight:600;box-shadow:0 8px 32px rgba(0,0,0,.15);z-index:9999;transform:translateX(140%);transition:.4s cubic-bezier(.34,1.56,.64,1);}
+.toast.show{transform:translateX(0);}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ── CURRENCY CHIP ── */
+.currency-chip{display:inline-flex;align-items:center;gap:5px;background:rgba(245,166,35,.15);color:var(--orange);border:1px solid rgba(245,166,35,.4);padding:3px 10px;border-radius:6px;font-size:12px;font-weight:700;}
+
+/* ── MOBILE MONEY BADGE ── */
+.mm-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.mm-tag{padding:2px 8px;background:#E8EDF4;color:var(--navy);border-radius:4px;font-size:10px;font-weight:600;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .detail-layout,.player-wrap,.browse-layout{grid-template-columns:1fr;}
+  .player-sidebar{max-height:380px;}
+  .sidebar-filters{display:none;}
+  .hero h1{font-size:32px;letter-spacing:-0.5px;}
+  .hero h1 .nowrap{white-space:normal;}
+  nav .nav-links a:not(.btn):not(.country-btn){display:none;}
+  .how-grid{grid-template-columns:1fr;}
+  .country-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}
+  .payment-methods{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-logo" onclick="go('landing')" title="Go to homepage">
+    <div class="logo-icon">🎓</div>
+    Learn<span>Loop</span>
+  </div>
+  <div class="nav-links">
+    <a onclick="go('browse')">Browse</a>
+    <a onclick="go('instructor')">Teach</a>
+    <a onclick="go('dashboard')">My Learning</a>
+    <!-- Country Picker -->
+    <div class="country-picker" id="countryPicker">
+      <button class="country-btn" onclick="toggleCountryDropdown()" id="countryBtn">
+        🇳🇬 Nigeria · ₦
+      </button>
+      <div class="country-dropdown" id="countryDropdown">
+        <div class="cd-header">Select Your Country</div>
+        <div id="countryList"></div>
+      </div>
+    </div>
+    <a onclick="go('login')" class="btn btn-secondary btn-sm">Log In</a>
+    <a onclick="go('signup')" class="btn btn-primary btn-sm">Get Started</a>
+  </div>
+</nav>
+
+<!-- ══ SCREEN 1: LANDING ══ -->
+<div id="screen-landing" class="screen active">
+  <div class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">🌍 15 English-Speaking African Countries</div>
+      <h1>Learn the Skills That <span>Pay,</span> From Teachers Who Get It.</h1>
+      <p>Africa's first localized e-learning marketplace. Affordable courses from local experts. Pay with mobile money. Learn offline.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="go('browse')">🚀 Explore Courses</button>
+        <button class="btn btn-secondary" onclick="go('signup')">🎓 Start Teaching</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num" data-target="18500">0</div><div class="lbl">Active Learners</div></div>
+        <div class="hero-stat"><div class="num" data-target="560">0</div><div class="lbl">Local Instructors</div></div>
+        <div class="hero-stat"><div class="num" data-target="15">0</div><div class="lbl">Countries</div></div>
+        <div class="hero-stat"><div class="num" data-target="1200">0</div><div class="lbl">Courses</div></div>
+        <div class="hero-stat"><div class="num">4.8★</div><div class="lbl">Avg. Rating</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    <div class="trust-inner">
+      <span>✅ No credit card needed</span><div class="trust-divider"></div>
+      <span>📱 Mobile money in 15 countries</span><div class="trust-divider"></div>
+      <span>📥 Learn offline anywhere</span><div class="trust-divider"></div>
+      <span>🏆 Certificates included</span><div class="trust-divider"></div>
+      <span>🔒 30-day money-back guarantee</span>
+    </div>
+  </div>
+
+  <!-- Countries We Serve -->
+  <div class="section" style="background:var(--white);">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Where We Operate</h2>
+        <p>Learn in your local currency, pay with local mobile money across 15 English-speaking African countries</p>
+      </div>
+      <div class="country-grid reveal" id="landingCountryGrid"></div>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header reveal"><h2>Browse by Category</h2><p>Find the right skill for your career and market</p></div>
+      <div class="cat-grid reveal">
+        <div class="cat-card" onclick="go('browse')"><div class="cat-icon">📱</div><div class="cat-name">Digital Marketing</div><div class="cat-count">128 courses</div></div>
+        <div class="cat-card" onclick="go('browse')"><div class="cat-icon">💻</div><div class="cat-name">Tech Skills</div><div class="cat-count">94 courses</div></div>
+        <div class="cat-card" onclick="go('browse')"><div class="cat-icon">🧵</div><div class="cat-name">Vocational</div><div class="cat-count">76 courses</div></div>
+        <div class="cat-card" onclick="go('browse')"><div class="cat-icon">💰</div><div class="cat-name">Finance</div><div class="cat-count">52 courses</div></div>
+        <div class="cat-card" onclick="go('browse')"><div class="cat-icon">📸</div><div class="cat-name">Photography</div><div class="cat-count">41 courses</div></div>
+        <div class="cat-card" onclick="go('browse')"><div class="cat-icon">🚀</div><div class="cat-name">Business</div><div class="cat-count">89 courses</div></div>
+        <div class="cat-card" onclick="go('browse')"><div class="cat-icon">🎨</div><div class="cat-name">Design</div><div class="cat-count">37 courses</div></div>
+        <div class="cat-card" onclick="go('browse')"><div class="cat-icon">🌾</div><div class="cat-name">Agriculture</div><div class="cat-count">29 courses</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Why LearnLoop -->
+  <div class="features-strip">
+    <h2>Why LearnLoop Wins</h2>
+    <div class="feat-grid reveal">
+      <div class="feat-item"><div class="feat-icon">📱</div><div class="feat-title">Mobile Money Checkout</div><div class="feat-desc">MTN MoMo, M-Pesa, Airtel Money, EcoCash & more. Pay in your local currency — no bank card needed.</div></div>
+      <div class="feat-item"><div class="feat-icon">📥</div><div class="feat-title">Download & Learn Offline</div><div class="feat-desc">Download lessons before your commute. Learn when your data runs out. Sync when back online.</div></div>
+      <div class="feat-item"><div class="feat-icon">🏘️</div><div class="feat-title">Local Instructors</div><div class="feat-desc">Learn from experts who know your market, your challenges, and speak your context.</div></div>
+      <div class="feat-item"><div class="feat-icon">💰</div><div class="feat-title">Local Currency Pricing</div><div class="feat-desc">Prices shown in Naira, Cedis, Shillings, Rand & more. Affordable for every African budget.</div></div>
+    </div>
+  </div>
+
+  <!-- Featured Courses -->
+  <div class="section" style="background:var(--white);">
+    <div class="container">
+      <div class="section-header reveal"><h2>Top Courses This Week</h2><p>Job-ready skills from local experts across Africa</p></div>
+      <div class="grid-3 reveal">
+        <div class="card" onclick="go('detail')">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=380&fit=crop&q=80" alt="Social Media" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Digital Marketing</div><div class="card-title">Social Media Marketing for Nigerian Small Businesses</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop" alt="">Chidi Okonkwo · 🇳🇬 Lagos</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.9 (1.2k)</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.20">—</span></div></div><div style="margin-top:8px;display:flex;gap:5px;"><span class="badge badge-orange">Bestseller</span><span class="badge badge-teal">📥 Offline</span></div></div>
+        </div>
+        <div class="card" onclick="go('detail')">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be66?w=600&h=380&fit=crop&q=80" alt="Web Dev" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Tech Skills</div><div class="card-title">Web Development with HTML, CSS & JavaScript — Ghana Edition</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop" alt="">Abena Asante · 🇬🇭 Accra</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8 (876)</span></div><div><span class="price-old" data-usd-old="8">—</span><span class="price" data-usd="4.00">—</span></div></div><div style="margin-top:8px;display:flex;gap:5px;"><span class="badge badge-green">New</span><span class="badge badge-teal">📥 Offline</span></div></div>
+        </div>
+        <div class="card" onclick="go('detail')">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=380&fit=crop&q=80" alt="Business Kenya" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Business</div><div class="card-title">Starting a Business in Kenya — Step by Step</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=40&h=40&fit=crop" alt="">Grace Wanjiku · 🇰🇪 Nairobi</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8 (640)</span></div><div><span class="price-old" data-usd-old="3">—</span><span class="price" data-usd="1.40">—</span></div></div><div style="margin-top:8px;display:flex;gap:5px;"><span class="badge badge-teal">📥 Offline</span><span class="badge badge-navy">🇰🇪 Kenya</span></div></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:32px;"><button class="btn btn-outline" onclick="go('browse')">Browse All 1,200+ Courses →</button></div>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header reveal"><h2>How It Works</h2><p>Start learning in 3 simple steps</p></div>
+      <div class="how-grid reveal">
+        <div class="how-item"><div class="how-num">1</div><h3>Browse & Choose</h3><p>Find a course from a local expert in your country. Filter by currency, country, and skill level.</p></div>
+        <div class="how-item"><div class="how-num">2</div><h3>Pay in Your Currency</h3><p>Use your country's mobile money: M-Pesa, MTN MoMo, EcoCash, Airtel Money & more. Pay in local currency.</p></div>
+        <div class="how-item"><div class="how-num">3</div><h3>Learn & Earn</h3><p>Watch online or download for offline. Get certified, build your skills, advance your career.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="section" style="background:var(--white);">
+    <div class="container">
+      <div class="section-header reveal"><h2>Real Learners. Real Results.</h2><p>From Nigeria to South Africa — skills that pay</p></div>
+      <div class="testimonial-slider reveal">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-slide"><div class="testimonial-card"><div class="t-stars">★★★★★</div><p class="t-quote">"I downloaded all 12 lessons before my commute. Finished the digital marketing course offline on the bus. Got my first client the week after. LearnLoop changed everything."</p><div class="t-author"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=100&fit=crop" alt="" class="t-avatar"><div><div class="t-name">Zainab Badu</div><div class="t-role">Digital Marketer · Accra 🇬🇭</div></div></div></div></div>
+          <div class="testimonial-slide"><div class="testimonial-card"><div class="t-stars">★★★★★</div><p class="t-quote">"I was teaching on WhatsApp groups for free. LearnLoop let me create a proper course, set my price in Naira, and I made ₦180,000 in my first month. The platform just works."</p><div class="t-author"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="" class="t-avatar"><div><div class="t-name">Marcus Okafor</div><div class="t-role">Instructor · Lagos 🇳🇬</div></div></div></div></div>
+          <div class="testimonial-slide"><div class="testimonial-card"><div class="t-stars">★★★★★</div><p class="t-quote">"I paid with M-Pesa in 10 seconds. No bank, no stress. Instantly enrolled and started learning. The course content is relevant to Kenya — real examples, real businesses."</p><div class="t-author"><img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=100&h=100&fit=crop" alt="" class="t-avatar"><div><div class="t-name">Grace Wanjiku</div><div class="t-role">Entrepreneur · Nairobi 🇰🇪</div></div></div></div></div>
+          <div class="testimonial-slide"><div class="testimonial-card"><div class="t-stars">★★★★★</div><p class="t-quote">"As a South African, I was surprised to find courses priced in Rand. The content applies to our market. I completed the finance course and started saving properly within weeks."</p><div class="t-author"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop" alt="" class="t-avatar"><div><div class="t-name">Thabo Dlamini</div><div class="t-role">Accountant · Johannesburg 🇿🇦</div></div></div></div></div>
+        </div>
+        <div class="slider-dots"><div class="dot active" onclick="goSlide(0)"></div><div class="dot" onclick="goSlide(1)"></div><div class="dot" onclick="goSlide(2)"></div><div class="dot" onclick="goSlide(3)"></div></div>
+        <div class="slider-arrows"><button class="slider-arrow" onclick="prevSlide()">←</button><button class="slider-arrow" onclick="nextSlide()">→</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="background:linear-gradient(135deg,var(--teal),#0a5a5a);padding:68px 24px;text-align:center;">
+    <h2 style="font-size:32px;font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-0.5px;">Ready to Start Learning?</h2>
+    <p style="color:rgba(255,255,255,.75);font-size:17px;max-width:480px;margin:0 auto 28px;line-height:1.6;">Join 18,500+ learners across 15 countries building real skills, in their own currency.</p>
+    <button class="btn btn-primary" onclick="go('signup')" style="font-size:16px;padding:14px 34px;">Create Free Account →</button>
+  </div>
+</div>
+
+<!-- ══ SCREEN 2: BROWSE ══ -->
+<div id="screen-browse" class="screen">
+  <div class="browse-hero">
+    <div class="container">
+      <h2>Browse All Courses</h2>
+      <p style="color:rgba(255,255,255,.7);font-size:13px;margin-bottom:14px;"> 1,200+ courses · 560+ local instructors · 15 English-speaking African countries</p>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search courses, skills, instructors, or countries..." oninput="filterCourses()"/>
+        <button onclick="filterCourses()">🔍 Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="browse-layout">
+    <div class="sidebar-filters">
+      <div class="sf-title">Category</div>
+      <label class="sf-option"><input type="checkbox" checked> Digital Marketing</label>
+      <label class="sf-option"><input type="checkbox"> Tech Skills</label>
+      <label class="sf-option"><input type="checkbox"> Vocational</label>
+      <label class="sf-option"><input type="checkbox"> Finance</label>
+      <label class="sf-option"><input type="checkbox"> Photography</label>
+      <label class="sf-option"><input type="checkbox"> Business</label>
+      <label class="sf-option"><input type="checkbox"> Agriculture</label>
+      <label class="sf-option"><input type="checkbox"> Design</label>
+      <div class="sf-title">Country</div>
+      <label class="sf-option"><input type="checkbox" checked> 🇳🇬 Nigeria</label>
+      <label class="sf-option"><input type="checkbox" checked> 🇬🇭 Ghana</label>
+      <label class="sf-option"><input type="checkbox" checked> 🇰🇪 Kenya</label>
+      <label class="sf-option"><input type="checkbox"> 🇿🇦 South Africa</label>
+      <label class="sf-option"><input type="checkbox"> 🇺🇬 Uganda</label>
+      <label class="sf-option"><input type="checkbox"> 🇹🇿 Tanzania</label>
+      <label class="sf-option"><input type="checkbox"> 🇷🇼 Rwanda</label>
+      <label class="sf-option"><input type="checkbox"> 🇿🇲 Zambia</label>
+      <label class="sf-option"><input type="checkbox"> 🇿🇼 Zimbabwe</label>
+      <label class="sf-option"><input type="checkbox"> 🇧🇼 Botswana</label>
+      <label class="sf-option"><input type="checkbox"> 🇳🇦 Namibia</label>
+      <label class="sf-option"><input type="checkbox"> 🇲🇼 Malawi</label>
+      <label class="sf-option"><input type="checkbox"> 🇸🇱 Sierra Leone</label>
+      <label class="sf-option"><input type="checkbox"> 🇱🇷 Liberia</label>
+      <label class="sf-option"><input type="checkbox"> 🇬🇲 Gambia</label>
+      <div class="sf-title">Features</div>
+      <label class="sf-option"><input type="checkbox" checked> 📥 Offline Available</label>
+      <label class="sf-option"><input type="checkbox"> 📜 Certificate</label>
+      <label class="sf-option"><input type="checkbox"> 🆓 Free Preview</label>
+    </div>
+    <div>
+      <div class="filter-bar">
+        <span class="filter-chip active" onclick="setChip(this,'all')">All</span>
+        <span class="filter-chip" onclick="setChip(this,'digital')">📱 Marketing</span>
+        <span class="filter-chip" onclick="setChip(this,'tech')">💻 Tech</span>
+        <span class="filter-chip" onclick="setChip(this,'business')">🚀 Business</span>
+        <span class="filter-chip" onclick="setChip(this,'finance')">💰 Finance</span>
+        <span class="filter-chip" onclick="setChip(this,'vocational')">🧵 Vocational</span>
+        <span class="filter-chip" onclick="setChip(this,'photography')">📸 Photography</span>
+        <span class="filter-chip" onclick="setChip(this,'agriculture')">🌾 Agriculture</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+        <span style="font-size:14px;color:var(--gray);" id="resultCount">Showing <strong>9</strong> of 1,200 courses</span>
+        <select class="form-select" style="width:auto;padding:7px 12px;font-size:13px;"><option>Most Popular</option><option>Newest First</option><option>Price: Low to High</option><option>Highest Rated</option></select>
+      </div>
+      <div class="grid-3" id="courseGrid">
+        <!-- Cards with data-usd for currency switching -->
+        <div class="card" onclick="go('detail')" data-cat="digital" data-title="social media marketing nigeria chidi okonkwo lagos">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Digital Marketing</div><div class="card-title">Social Media Marketing for Nigerian Small Businesses</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop" alt="">Chidi Okonkwo · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.9</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.20">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;"><span class="badge badge-orange">Bestseller</span><span class="badge badge-teal">📥</span></div></div>
+        </div>
+        <div class="card" onclick="go('detail')" data-cat="tech" data-title="web development html css javascript ghana abena asante accra">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be66?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Tech Skills</div><div class="card-title">Web Development with HTML, CSS & JavaScript — Ghana Edition</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop" alt="">Abena Asante · 🇬🇭</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="8">—</span><span class="price" data-usd="4.00">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-green">New</span></div></div>
+        </div>
+        <div class="card" onclick="go('detail')" data-cat="business" data-title="starting business kenya step by step grace wanjiku nairobi">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Business</div><div class="card-title">Starting a Business in Kenya — Step by Step</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=40&h=40&fit=crop" alt="">Grace Wanjiku · 🇰🇪</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="3">—</span><span class="price" data-usd="1.40">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-teal">📥 Offline</span></div></div>
+        </div>
+        <div class="card" onclick="go('detail')" data-cat="vocational" data-title="fashion tailoring business profit lagos fatima bello">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Vocational</div><div class="card-title">Fashion Business & Tailoring for Profit — Lagos Style</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=40&h=40&fit=crop" alt="">Fatima Bello · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★☆</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="4">—</span><span class="price" data-usd="1.55">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-orange">Hot 🔥</span></div></div>
+        </div>
+        <div class="card" onclick="go('detail')" data-cat="finance" data-title="personal finance saving south africa rand thabo johannesburg">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Finance</div><div class="card-title">Personal Finance & Investing — South Africa Edition</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop" alt="">Thabo Dlamini · 🇿🇦</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="6">—</span><span class="price" data-usd="2.80">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-green">🇿🇦 SA Edition</span></div></div>
+        </div>
+        <div class="card" onclick="go('detail')" data-cat="photography" data-title="phone photography content creators lagos emeka nwosu">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Photography</div><div class="card-title">Phone Photography for Content Creators</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop" alt="">Emeka Nwosu · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.9</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.50">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-teal">📥 Offline</span></div></div>
+        </div>
+        <div class="card" onclick="go('detail')" data-cat="tech" data-title="mobile money fintech uganda east africa kampala">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Tech Skills</div><div class="card-title">Mobile Money & Fintech Fundamentals — East Africa</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=40&h=40&fit=crop" alt="">James Okello · 🇺🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.00">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-navy">🇺🇬 Uganda</span></div></div>
+        </div>
+        <div class="card" onclick="go('detail')" data-cat="agriculture" data-title="agribusiness farming zambia africa kwacha rural">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Agriculture</div><div class="card-title">Modern Agribusiness & Smart Farming in Zambia</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop" alt="">Charity Mwale · 🇿🇲</div><div class="card-meta"><div><span class="stars">★★★★☆</span><span class="rating">4.6</span></div><div><span class="price-old" data-usd-old="4">—</span><span class="price" data-usd="1.80">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-green">🇿🇲 Zambia</span></div></div>
+        </div>
+        <div class="card" onclick="go('detail')" data-cat="digital" data-title="ecommerce online selling zimbabwe ecash digital">
+          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+          <div class="card-body"><div class="card-cat">Digital Marketing</div><div class="card-title">E-Commerce & Online Selling for Zimbabwe Entrepreneurs</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop" alt="">Tatenda Moyo · 🇿🇼</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.40">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-navy">🇿🇼 Zimbabwe</span></div></div>
+        </div>
+      </div>
+      <div id="noResults" style="display:none;text-align:center;padding:48px;color:var(--gray);">
+        <div style="font-size:48px;margin-bottom:12px;">🔍</div>
+        <h3 style="font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;">No courses found</h3>
+        <p style="margin-bottom:16px;">Try a different search term or category</p>
+        <button class="btn btn-primary" onclick="resetFilters()">Show All Courses</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 3: COURSE DETAIL ══ -->
+<div id="screen-detail" class="screen">
+  <div class="detail-hero">
+    <div class="container">
+      <div class="breadcrumb" onclick="go('browse')">← Browse Courses / <span>Digital Marketing</span></div>
+      <h1>Social Media Marketing for Nigerian Small Businesses</h1>
+      <p>Master Instagram, Facebook & WhatsApp marketing. Get clients, run paid ads, grow a real business — Nigerian case studies & local examples throughout.</p>
+      <div class="detail-meta">
+        <span>⭐ <strong>4.9</strong> (1,243 reviews)</span>
+        <span>👥 <strong>3,840</strong> enrolled</span>
+        <span>🕐 <strong>14.5 hours</strong></span>
+        <span>📜 <strong>Certificate</strong> included</span>
+        <span>📥 <strong>Offline</strong> available</span>
+      </div>
+      <div style="margin-top:16px;display:flex;align-items:center;gap:12px;">
+        <div class="avatar" style="width:46px;height:46px;"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=92&h=92&fit=crop" alt="Chidi"></div>
+        <div><div style="font-weight:700;font-size:15px;">Chidi Okonkwo</div><div style="font-size:13px;color:rgba(255,255,255,.6);">Digital Marketing Expert · 🇳🇬 Lagos, Nigeria</div></div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:7px;"><span class="badge badge-orange">Bestseller</span><span style="background:rgba(255,255,255,.15);color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700;">Updated June 2025</span></div>
+    </div>
+  </div>
+  <div class="detail-layout">
+    <div class="detail-main">
+      <div class="tab-bar" id="detailTabs">
+        <div class="tab active" onclick="switchTab('overview',this)">Overview</div>
+        <div class="tab" onclick="switchTab('curriculum',this)">Curriculum</div>
+        <div class="tab" onclick="switchTab('instructor',this)">Instructor</div>
+        <div class="tab" onclick="switchTab('reviews',this)">Reviews</div>
+      </div>
+      <div class="tab-content active" id="tab-overview">
+        <div style="background:var(--orange-light);border:1px solid #f0c870;border-radius:var(--radius);padding:22px;margin-bottom:20px;">
+          <h3 style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:12px;">What You'll Learn</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="font-size:13px;">✅ Build a content strategy for Instagram & Facebook</div>
+            <div style="font-size:13px;">✅ Run Facebook Ads with as little as ₦500/day</div>
+            <div style="font-size:13px;">✅ Grow a WhatsApp business group to 500+ customers</div>
+            <div style="font-size:13px;">✅ Write captions that convert in Nigerian English</div>
+            <div style="font-size:13px;">✅ Get your first 3 paying clients within 30 days</div>
+            <div style="font-size:13px;">✅ Use Canva to create professional visuals for free</div>
+          </div>
+        </div>
+        <div style="background:var(--gray-light);border-radius:var(--radius);padding:18px;">
+          <h3 style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:10px;">Requirements</h3>
+          <div style="font-size:13px;display:flex;flex-direction:column;gap:6px;">
+            <span>📱 A smartphone with internet access</span>
+            <span>📧 A social media account (Instagram or Facebook)</span>
+            <span>💡 No prior marketing experience needed</span>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-curriculum">
+        <h3 style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:8px;">Course Curriculum</h3>
+        <div style="margin-bottom:12px;font-size:13px;color:var(--gray);">5 modules · 32 lessons · 14.5 hours total</div>
+        <div class="curriculum-item"><div class="ci-left"><span>📹</span><div><div style="font-size:13px;font-weight:600;">1. Welcome & Course Overview</div><div style="font-size:11px;color:var(--gray);">8 min</div></div></div><span style="font-size:12px;color:var(--green);font-weight:600;">FREE</span></div>
+        <div class="curriculum-item" onclick="go('player')"><div class="ci-left"><span>📹</span><div><div style="font-size:13px;font-weight:600;">2. The Nigerian Social Media Landscape</div><div style="font-size:11px;color:var(--gray);">22 min</div></div></div><span>📥</span></div>
+        <div class="curriculum-item" onclick="go('player')"><div class="ci-left"><span>📹</span><div><div style="font-size:13px;font-weight:600;">3. Instagram for Nigerian Businesses — A to Z</div><div style="font-size:11px;color:var(--gray);">35 min</div></div></div><span>📥</span></div>
+        <div class="curriculum-item" onclick="go('player')"><div class="ci-left"><span>📹</span><div><div style="font-size:13px;font-weight:600;">4. WhatsApp Business Setup & Customer Management</div><div style="font-size:11px;color:var(--gray);">28 min</div></div></div><span>📥</span></div>
+        <div class="curriculum-item"><div class="ci-left"><span>🔒</span><div><div style="font-size:13px;font-weight:600;color:var(--gray);">5. Running Facebook Ads on a Budget</div><div style="font-size:11px;color:var(--gray);">41 min · Enroll to access</div></div></div></div>
+        <div style="text-align:center;margin:14px 0;"><button class="btn btn-outline btn-sm">Show all 32 lessons ↓</button></div>
+      </div>
+      <div class="tab-content" id="tab-instructor">
+        <div style="display:flex;gap:18px;align-items:flex-start;padding:20px;background:var(--gray-light);border-radius:var(--radius);">
+          <div class="avatar" style="width:76px;height:76px;flex-shrink:0;"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=152&h=152&fit=crop" alt=""></div>
+          <div><h3 style="font-size:17px;font-weight:800;color:var(--navy);">Chidi Okonkwo</h3><p style="font-size:13px;color:var(--gray);margin-bottom:10px;">Digital Marketing Expert · 10+ years · 🇳🇬 Lagos, Nigeria</p><div style="display:flex;gap:14px;font-size:12px;color:var(--gray);margin-bottom:10px;"><span>⭐ 4.9 rating</span><span>👥 3,840 students</span><span>🎓 2 courses</span></div><p style="font-size:14px;line-height:1.65;color:var(--text);">Chidi has helped 200+ Nigerian small businesses grow online. His courses use real local examples — market women, provision shop owners, fashion designers — making the learning immediately applicable.</p></div>
+        </div>
+      </div>
+      <div class="tab-content" id="tab-reviews">
+        <div style="display:flex;gap:20px;align-items:center;background:var(--gray-light);border-radius:var(--radius);padding:18px;margin-bottom:18px;">
+          <div style="text-align:center;"><div style="font-size:48px;font-weight:800;color:var(--navy);">4.9</div><div style="color:var(--orange);font-size:18px;">★★★★★</div><div style="font-size:12px;color:var(--gray);">1,243 ratings</div></div>
+          <div style="flex:1;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><div style="flex:1;height:7px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="width:88%;height:100%;background:var(--orange);border-radius:4px;"></div></div><span style="font-size:11px;color:var(--gray);white-space:nowrap;">5★ 88%</span></div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><div style="flex:1;height:7px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="width:9%;height:100%;background:var(--orange);border-radius:4px;"></div></div><span style="font-size:11px;color:var(--gray);">4★ 9%</span></div>
+            <div style="display:flex;align-items:center;gap:6px;"><div style="flex:1;height:7px;background:var(--border);border-radius:4px;overflow:hidden;"><div style="width:3%;height:100%;background:var(--orange);border-radius:4px;"></div></div><span style="font-size:11px;color:var(--gray);">3★ 3%</span></div>
+          </div>
+        </div>
+        <div style="border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:16px;"><div style="display:flex;gap:10px;"><div class="avatar" style="width:40px;height:40px;"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop" alt=""></div><div><div style="font-weight:700;font-size:14px;">Zainab B. <span style="color:var(--orange);">★★★★★</span></div><div style="font-size:13px;color:var(--gray);margin-top:4px;line-height:1.55;">"I downloaded all lessons before my commute. Finished the course offline. Got my first client the week after. Genuinely life-changing."</div></div></div></div>
+        <div><div style="display:flex;gap:10px;"><div class="avatar" style="width:40px;height:40px;"><img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=80&h=80&fit=crop" alt=""></div><div><div style="font-weight:700;font-size:14px;">Kofi A. <span style="color:var(--orange);">★★★★★</span></div><div style="font-size:13px;color:var(--gray);margin-top:4px;line-height:1.55;">"Real Nigerian examples — suya sellers, provision shops, clothing vendors. Finally a course that talks to me."</div></div></div></div>
+      </div>
+    </div>
+    <div class="detail-sidebar">
+      <div class="sidebar-thumb"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=660&h=330&fit=crop&q=80" alt=""></div>
+      <div class="sidebar-body">
+        <div class="sidebar-price" id="detailPrice">—</div>
+        <div class="sidebar-price-old" id="detailPriceOld">—</div>
+        <div style="display:flex;align-items:center;gap:7px;background:var(--orange-light);border-radius:8px;padding:8px 11px;margin-bottom:14px;font-size:12px;color:#b87800;font-weight:600;">⏰ Sale ends in <strong>2 days</strong></div>
+        <div class="sidebar-actions">
+          <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:13px;" onclick="go('checkout')">Enroll Now</button>
+          <button class="btn btn-outline" style="width:100%;justify-content:center;">Try Free Preview</button>
+        </div>
+        <ul class="sidebar-features">
+          <li><span>🕐</span> 14.5 hours of video</li>
+          <li><span>📥</span> Download for offline</li>
+          <li><span>📱</span> Mobile & desktop</li>
+          <li><span>📜</span> Certificate included</li>
+          <li><span>♾️</span> Lifetime access</li>
+          <li><span>💬</span> Community access</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 4: CHECKOUT ══ -->
+<div id="screen-checkout" class="screen">
+  <div class="checkout-wrap">
+    <div style="margin-bottom:14px;"><span onclick="go('detail')" style="cursor:pointer;color:var(--navy);font-size:14px;font-weight:600;">← Back to Course</span></div>
+    <div class="checkout-card">
+      <div class="checkout-header"><h2>🔒 Secure Checkout</h2><p style="color:rgba(255,255,255,.7);font-size:12px;margin-top:3px;">256-bit SSL encrypted · Powered by Paystack</p></div>
+      <div class="checkout-body">
+        <div class="order-summary">
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px;"><div style="width:52px;height:40px;border-radius:6px;overflow:hidden;flex-shrink:0;"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=104&h=80&fit=crop" alt=""></div><div style="font-size:13px;font-weight:600;color:var(--navy);">Social Media Marketing for Nigerian Small Businesses</div></div>
+          <div class="order-row"><span>Course price</span><span id="checkoutOld">—</span></div>
+          <div class="order-row" style="color:var(--green);"><span>Discount (56% off)</span><span id="checkoutDiscount">—</span></div>
+          <div class="order-row order-total"><span>Total</span><span id="checkoutTotal">—</span></div>
+        </div>
+        <div class="form-group">
+          <div class="form-label">Payment Method</div>
+          <div class="payment-methods" id="paymentMethods">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+        <div id="momo-fields">
+          <div class="form-group"><label class="form-label">Mobile Money Provider</label><select class="form-select" id="momoProvider"><option>Select provider...</option></select></div>
+          <div class="form-group"><label class="form-label">Mobile Number</label><input class="form-input" type="tel" id="momoNumber" placeholder="e.g. 08012345678"/><div class="form-error" id="momoError">Please enter a valid mobile number</div></div>
+          <div style="background:var(--teal-light);border:1px solid var(--teal);border-radius:8px;padding:12px;font-size:13px;color:var(--teal);margin-bottom:14px;" id="momoInfo">📱 You'll receive a prompt to approve this payment on your phone.</div>
+        </div>
+        <div id="card-fields" style="display:none;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group" style="grid-column:1/-1;"><label class="form-label">Card Number</label><input class="form-input" type="text" placeholder="1234 5678 9012 3456" maxlength="19"/></div>
+            <div class="form-group"><label class="form-label">Expiry</label><input class="form-input" type="text" placeholder="MM / YY" maxlength="7"/></div>
+            <div class="form-group"><label class="form-label">CVV</label><input class="form-input" type="text" placeholder="123" maxlength="3"/></div>
+          </div>
+        </div>
+        <div class="form-group"><label class="form-label">Email (for receipt)</label><input class="form-input" type="email" id="emailInput" placeholder="your@email.com"/><div class="form-error" id="emailError">Please enter a valid email address</div></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:16px;padding:14px;" onclick="processPayment()">Pay Now →</button>
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--gray);margin-top:14px;">🔒 SSL Secured · 30-day money-back guarantee · No hidden fees</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 5: SUCCESS ══ -->
+<div id="screen-success" class="screen">
+  <div class="success-wrap">
+    <div class="success-card">
+      <div class="success-icon">🎉</div>
+      <h2 style="font-size:26px;font-weight:800;color:var(--navy);margin-bottom:10px;">You're In!</h2>
+      <p style="color:var(--gray);font-size:15px;line-height:1.65;margin-bottom:26px;">Welcome to <strong>Social Media Marketing for Nigerian Small Businesses</strong>. Access all 32 lessons — online and offline.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px;" onclick="go('player')">▶ Start Learning Now</button>
+        <button class="btn btn-outline" style="width:100%;justify-content:center;" onclick="go('dashboard')">Go to My Dashboard</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 6: VIDEO PLAYER ══ -->
+<div id="screen-player" class="screen">
+  <div class="player-wrap">
+    <div class="player-main">
+      <div class="video-area" onclick="togglePlay()">
+        <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1280&h=720&fit=crop&q=80" alt="">
+        <div class="video-placeholder">
+          <div class="play-btn-big" id="playBtn">▶</div>
+          <p style="font-size:13px;color:rgba(255,255,255,.65);">The Nigerian Social Media Landscape · 22 min</p>
+        </div>
+      </div>
+      <div class="video-controls">
+        <button class="vc-btn" id="play-pause-btn" onclick="event.stopPropagation();togglePlay()">▶</button>
+        <button class="vc-btn">⏮</button>
+        <div class="vc-progress" id="vcProgress" onclick="event.stopPropagation();seekVideo(event)"><div class="vc-fill" id="vcFill"></div></div>
+        <span class="vc-time" id="vcTime">7:42 / 22:15</span>
+        <button class="vc-btn">⏭</button>
+        <button class="vc-btn" onclick="event.stopPropagation();showDownloadToast()">📥</button>
+        <button class="vc-btn">🔊</button>
+        <button class="vc-btn">⛶</button>
+      </div>
+      <div class="player-info"><h3>Lesson 2: The Nigerian Social Media Landscape</h3><p>Module 1: Foundations · 22 min · Social Media Marketing Course</p></div>
+    </div>
+    <div class="player-sidebar">
+      <div class="ps-header"><div><h3>Course Content</h3><div style="font-size:11px;color:var(--gray);margin-top:2px;">4 of 32 lessons · 35% complete</div></div><span onclick="go('detail')" style="font-size:13px;color:var(--teal);cursor:pointer;font-weight:600;">← Back</span></div>
+      <div class="lesson-item completed"><div class="li-num">✓</div><div class="li-info"><div class="li-title">1. Welcome & Overview</div><div class="li-meta">8 min · Completed</div></div></div>
+      <div class="lesson-item active"><div class="li-num">2</div><div class="li-info"><div class="li-title">2. The Nigerian Social Media Landscape</div><div class="li-meta">22 min · In progress</div></div></div>
+      <div class="lesson-item"><div class="li-num">3</div><div class="li-info"><div class="li-title">3. Instagram for Nigerian Businesses</div><div class="li-meta">35 min</div></div><span onclick="event.stopPropagation();showDownloadToast()" style="cursor:pointer;font-size:13px;">📥</span></div>
+      <div class="lesson-item"><div class="li-num">4</div><div class="li-info"><div class="li-title">4. WhatsApp Business Setup</div><div class="li-meta">28 min</div></div><span onclick="event.stopPropagation();showDownloadToast()" style="cursor:pointer;font-size:13px;">📥</span></div>
+      <div class="lesson-item"><div class="li-num">5</div><div class="li-info"><div class="li-title">5. Facebook Ads on a Budget</div><div class="li-meta">41 min</div></div></div>
+      <div class="lesson-item"><div class="li-num">6</div><div class="li-info"><div class="li-title">6. Content Calendar Planning</div><div class="li-meta">18 min</div></div></div>
+      <div class="lesson-item"><div class="li-num">7</div><div class="li-info"><div class="li-title">7. Writing Captions That Convert</div><div class="li-meta">24 min</div></div></div>
+    </div>
+  </div>
+  <div class="download-toast" id="downloadToast">📥 Downloading lesson for offline access...</div>
+</div>
+
+<!-- ══ SCREEN 7: DASHBOARD ══ -->
+<div id="screen-dashboard" class="screen">
+  <div class="dash-header"><div class="container"><h2 style="font-size:24px;font-weight:800;margin-bottom:4px;">👋 Welcome back, Zainab!</h2><p style="color:rgba(255,255,255,.7);">You're on a 7-day streak 🔥 Keep it up!</p></div></div>
+  <div class="dash-wrap">
+    <div class="dash-stats">
+      <div class="stat-card" style="border-top:3px solid var(--teal);"><div class="s-icon">📚</div><div class="s-num">3</div><div class="s-lbl">Courses Enrolled</div></div>
+      <div class="stat-card" style="border-top:3px solid var(--orange);"><div class="s-icon">✅</div><div class="s-num">1</div><div class="s-lbl">Completed</div></div>
+      <div class="stat-card" style="border-top:3px solid var(--green);"><div class="s-icon">⏱️</div><div class="s-num">18h</div><div class="s-lbl">Hours Learned</div></div>
+      <div class="stat-card" style="border-top:3px solid var(--navy);"><div class="s-icon">🏆</div><div class="s-num">1</div><div class="s-lbl">Certificates</div></div>
+      <div class="stat-card" style="border-top:3px solid var(--orange);"><div class="s-icon">🔥</div><div class="s-num">7</div><div class="s-lbl">Day Streak</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start;">
+      <div>
+        <h3 style="font-size:17px;font-weight:800;color:var(--navy);margin-bottom:14px;">Continue Learning</h3>
+        <div class="course-progress-card" onclick="go('player')">
+          <div class="cp-thumb"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=152&h=112&fit=crop" alt=""></div>
+          <div class="cp-info"><div class="cp-title">Social Media Marketing for Nigerian Small Businesses</div><div class="cp-sub">Lesson 2 of 32 · Last watched 2 hours ago</div><div class="progress-bar"><div class="progress-fill" data-width="35%"></div></div><div class="cp-pct">35% complete</div></div>
+          <div class="cp-action">▶ Resume</div>
+        </div>
+        <div class="course-progress-card" onclick="go('player')">
+          <div class="cp-thumb"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=152&h=112&fit=crop" alt=""></div>
+          <div class="cp-info"><div class="cp-title">Fashion Business & Tailoring for Profit</div><div class="cp-sub">Lesson 8 of 22 · Last watched yesterday</div><div class="progress-bar"><div class="progress-fill" data-width="64%"></div></div><div class="cp-pct">64% complete</div></div>
+          <div class="cp-action">▶ Resume</div>
+        </div>
+        <div class="course-progress-card">
+          <div class="cp-thumb"><img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=152&h=112&fit=crop" alt=""></div>
+          <div class="cp-info"><div class="cp-title">Phone Photography for Content Creators</div><div class="cp-sub">All 24 lessons complete 🎓</div><div class="progress-bar"><div class="progress-fill" data-width="100%"></div></div><div class="cp-pct" style="color:var(--green);">✅ Completed!</div></div>
+          <div class="cp-action" style="color:var(--green);">📜 View</div>
+        </div>
+      </div>
+      <div>
+        
+        <div style="background:var(--white);border-radius:14px;padding:18px;box-shadow:var(--shadow);margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <h4 style="font-size:14px;font-weight:800;color:var(--navy);">📥 My Downloads (Offline)</h4>
+            <label style="display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;cursor:pointer;color:var(--gray);background:var(--gray-light);padding:4px 8px;border-radius:6px;">
+              <input type="checkbox" id="offlineToggle" onchange="toggleOfflineMode(this)"> Simulate Offline Mode
+            </label>
+          </div>
+          <div id="offlineContent" style="display:flex;flex-direction:column;gap:10px;">
+             <div style="display:flex;gap:10px;align-items:center;padding:10px;background:var(--gray-light);border-radius:8px;cursor:pointer;" onclick="go('player')">
+                <div style="width:48px;height:36px;border-radius:4px;overflow:hidden;background:#333;"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=96&h=72&fit=crop" style="width:100%;height:100%;object-fit:cover;opacity:0.8;"></div>
+                <div style="flex:1;"><div style="font-size:12px;font-weight:700;color:var(--navy);">Social Media Marketing</div><div style="font-size:10px;color:var(--gray);">Lesson 2 · Downloaded (Expires in 28 days)</div></div>
+                <div style="font-size:18px;color:var(--teal);">▶</div>
+             </div>
+          </div>
+        </div>
+
+        <h3 style="font-size:17px;font-weight:800;color:var(--navy);margin-bottom:14px;">Achievements</h3>
+        <div style="background:var(--white);border-radius:14px;padding:18px;box-shadow:var(--shadow);margin-bottom:14px;">
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center;margin-bottom:10px;">
+            <div title="First Lesson" style="font-size:30px;cursor:help;">🌟</div><div title="First Download" style="font-size:30px;cursor:help;">📥</div><div title="7-Day Streak" style="font-size:30px;cursor:help;">🔥</div>
+            <div title="Complete 3 Courses — Locked" style="font-size:30px;opacity:.2;cursor:help;">🏅</div><div title="30-Day Streak — Locked" style="font-size:30px;opacity:.2;cursor:help;">⚡</div><div title="Top Learner — Locked" style="font-size:30px;opacity:.2;cursor:help;">👑</div>
+          </div>
+          <p style="font-size:12px;color:var(--gray);text-align:center;">3 of 6 badges earned</p>
+        </div>
+        <div style="background:var(--teal-light);border-radius:14px;padding:18px;border:1px solid var(--teal);text-align:center;">
+          <div style="font-size:26px;margin-bottom:6px;">🏆</div>
+          <div style="font-weight:700;color:var(--teal);font-size:14px;">Certificate Earned!</div>
+          <div style="font-size:12px;color:var(--gray);margin-top:3px;">Phone Photography · June 2025</div>
+          <button class="btn btn-teal btn-sm" style="margin-top:10px;width:100%;justify-content:center;" onclick="showToastAndGo('dashboard','📜 Certificate downloaded!')">Download Certificate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 8: INSTRUCTOR DASHBOARD ══ -->
+<div id="screen-instructor" class="screen">
+  <div class="inst-header"><div class="container"><div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;"><div><h2 style="font-size:24px;font-weight:800;">Instructor Dashboard</h2><p style="color:rgba(255,255,255,.7);font-size:14px;margin-top:3px;">Welcome back, Marcus. Here's how your courses are performing.</p></div><button class="btn btn-primary" onclick="go('create')">+ Create New Course</button></div></div></div>
+  <div class="inst-wrap">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;">
+      <div class="stat-card" style="border-left:4px solid var(--teal);"><div class="s-icon">💰</div><div class="s-num" style="color:var(--teal);">₦182,400</div><div class="s-lbl">Total Earned (June)</div></div>
+      <div class="stat-card" style="border-left:4px solid var(--orange);"><div class="s-icon">👥</div><div class="s-num" style="color:var(--orange);">1,247</div><div class="s-lbl">Total Students</div></div>
+      <div class="stat-card" style="border-left:4px solid var(--navy);"><div class="s-icon">⭐</div><div class="s-num" style="color:var(--navy);">4.9</div><div class="s-lbl">Average Rating</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:22px;align-items:start;">
+      <div>
+        <div class="revenue-card">
+          <div style="font-size:13px;color:rgba(255,255,255,.7);font-weight:600;">Total Revenue — June 2025</div>
+          <div class="rv-amount">₦182,400</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.65);">↑ 34% vs May · Commission: 20% · Your payout: ₦145,920</div>
+          <div class="mini-chart"><div class="bar" style="height:30%;" title="Week 1: ₦38k"></div><div class="bar" style="height:55%;" title="Week 2: ₦52k"></div><div class="bar" style="height:45%;" title="Week 3: ₦44k"></div><div class="bar" style="height:90%;" title="Week 4: ₦88k"></div></div>
+        </div>
+        <div style="background:var(--white);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><h3 style="font-size:15px;font-weight:800;color:var(--navy);">My Courses</h3><button class="btn btn-teal btn-sm" onclick="go('create')">+ New</button></div>
+          <div class="course-row"><div class="cr-thumb"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=120&h=88&fit=crop" alt=""></div><div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--navy);">Social Media Marketing for Nigerian Small Businesses</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Published · 32 lessons</div><div style="margin-top:4px;"><span class="badge badge-orange">Bestseller</span></div></div><div style="text-align:right;flex-shrink:0;"><div style="font-size:14px;font-weight:800;color:var(--teal);">₦128,400</div><div style="font-size:11px;color:var(--gray);">876 students</div><div style="color:var(--orange);font-size:11px;">★ 4.9</div></div></div>
+          <div class="course-row"><div class="cr-thumb"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=120&h=88&fit=crop" alt=""></div><div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--navy);">WhatsApp Business for Entrepreneurs</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Published · 18 lessons</div><div style="margin-top:4px;"><span class="badge badge-teal">Active</span></div></div><div style="text-align:right;flex-shrink:0;"><div style="font-size:14px;font-weight:800;color:var(--teal);">₦54,000</div><div style="font-size:11px;color:var(--gray);">371 students</div><div style="color:var(--orange);font-size:11px;">★ 4.8</div></div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="background:var(--white);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);"><h4 style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px;">Recent Enrollments</h4><div style="display:flex;flex-direction:column;gap:10px;"><div style="display:flex;gap:8px;align-items:center;font-size:13px;"><div class="avatar" style="width:32px;height:32px;"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=64&h=64&fit=crop" alt=""></div><div><div style="font-weight:600;font-size:13px;">Zainab B. 🇬🇭</div><div style="font-size:11px;color:var(--gray);">Social Media · 2h ago</div></div></div><div style="display:flex;gap:8px;align-items:center;font-size:13px;"><div class="avatar" style="width:32px;height:32px;"><img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=64&h=64&fit=crop" alt=""></div><div><div style="font-weight:600;font-size:13px;">Kwame A. 🇬🇭</div><div style="font-size:11px;color:var(--gray);">WhatsApp Business · 5h ago</div></div></div><div style="display:flex;gap:8px;align-items:center;font-size:13px;"><div class="avatar" style="width:32px;height:32px;"><img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=64&h=64&fit=crop" alt=""></div><div><div style="font-weight:600;font-size:13px;">Grace W. 🇰🇪</div><div style="font-size:11px;color:var(--gray);">Social Media · Yesterday</div></div></div></div></div>
+        <div style="background:var(--green-light);border-radius:var(--radius);padding:18px;border:1px solid #a5d6b5;"><h4 style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:5px;">💳 Next Payout</h4><div style="font-size:24px;font-weight:800;color:var(--green);">₦145,920</div><div style="font-size:11px;color:var(--gray);margin-top:3px;">June 30, 2025 · GTBank ****4421</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 9: CREATE COURSE ══ -->
+<div id="screen-create" class="screen">
+  <div style="max-width:700px;margin:0 auto;padding:36px 24px;">
+    <div style="margin-bottom:20px;"><span onclick="go('instructor')" style="cursor:pointer;color:var(--navy);font-size:14px;font-weight:600;">← Back to Dashboard</span></div>
+    <h2 style="font-size:24px;font-weight:800;color:var(--navy);margin-bottom:4px;">Create a New Course</h2>
+    <p style="color:var(--gray);font-size:14px;margin-bottom:28px;">Fill in the basics. Reach learners across 15 English-speaking African countries.</p>
+    <div style="display:flex;background:var(--gray-light);border-radius:10px;padding:4px;margin-bottom:28px;">
+      <div style="flex:1;text-align:center;background:var(--navy);border-radius:8px;padding:9px 4px;"><div style="font-size:12px;font-weight:700;color:#fff;">1. Basics</div></div>
+      <div style="flex:1;text-align:center;padding:9px 4px;"><div style="font-size:12px;color:var(--gray);">2. Curriculum</div></div>
+      <div style="flex:1;text-align:center;padding:9px 4px;"><div style="font-size:12px;color:var(--gray);">3. Pricing</div></div>
+      <div style="flex:1;text-align:center;padding:9px 4px;"><div style="font-size:12px;color:var(--gray);">4. Publish</div></div>
+    </div>
+    <div style="background:var(--white);border-radius:16px;padding:26px;box-shadow:var(--shadow);">
+      <div class="form-group"><label class="form-label">Course Title *</label><input class="form-input" type="text" placeholder="e.g. Instagram Marketing for Lagos Small Businesses"/></div>
+      <div class="form-group"><label class="form-label">Course Category *</label><select class="form-select"><option>Select a category...</option><option>Digital Marketing</option><option>Tech Skills</option><option>Vocational / Trades</option><option>Finance & Money</option><option>Photography & Video</option><option>Business & Entrepreneurship</option><option>Agriculture</option><option>Design</option></select></div>
+      <div class="form-group"><label class="form-label">Target Country *</label><select class="form-select"><option>Nigeria 🇳🇬</option><option>Ghana 🇬🇭</option><option>Kenya 🇰🇪</option><option>South Africa 🇿🇦</option><option>Uganda 🇺🇬</option><option>Tanzania 🇹🇿</option><option>Rwanda 🇷🇼</option><option>Zambia 🇿🇲</option><option>Zimbabwe 🇿🇼</option><option>Botswana 🇧🇼</option><option>Namibia 🇳🇦</option><option>Malawi 🇲🇼</option><option>Sierra Leone 🇸🇱</option><option>Liberia 🇱🇷</option><option>Gambia 🇬🇲</option><option>Pan-Africa (All Countries)</option></select></div>
+      <div class="form-group"><label class="form-label">Course Price (in your local currency) *</label><input class="form-input" type="text" placeholder="e.g. ₦3,500 or KSh 500 or R 250"/></div>
+      <div class="form-group"><label class="form-label">Short Description *</label><textarea class="form-input" rows="3" placeholder="What will students learn? What problem does this course solve?"></textarea></div>
+      <div class="form-group"><label class="form-label">Course Thumbnail</label><div style="border:2px dashed var(--border);border-radius:10px;padding:32px;text-align:center;cursor:pointer;background:var(--gray-light);transition:.2s;" onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'"><div style="font-size:32px;margin-bottom:8px;">📸</div><div style="font-size:14px;font-weight:600;color:var(--navy);">Click to upload thumbnail</div><div style="font-size:12px;color:var(--gray);margin-top:3px;">JPG or PNG · Max 5MB · 1280×720px</div></div></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:6px;"><button class="btn btn-outline">Save as Draft</button><button class="btn btn-primary" onclick="showToastAndGo('instructor','✅ Course basics saved! Proceeding to curriculum...')">Continue to Curriculum →</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 10: SIGN UP ══ -->
+<div id="screen-signup" class="screen">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div style="text-align:center;font-size:38px;margin-bottom:6px;">🎓</div>
+      <h2 style="text-align:center;">Create Your Account</h2>
+      <p style="text-align:center;">Join 18,500+ learners across 15 African countries</p>
+      <div class="auth-toggle"><div class="at-btn active">I'm a Learner</div><div class="at-btn">I'm an Instructor</div></div>
+      <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" type="text" id="signupName" placeholder="e.g. Zainab Badu"/></div>
+      <div class="form-group"><label class="form-label">Phone Number or Email</label><input class="form-input" type="text" id="signupContact" placeholder="e.g. 08012345678 or zainab@email.com"/></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="signupPass" placeholder="At least 8 characters"/></div>
+      <div class="form-group"><label class="form-label">Country</label><select class="form-select" id="signupCountry"><option value="ng">Nigeria 🇳🇬</option><option value="gh">Ghana 🇬🇭</option><option value="ke">Kenya 🇰🇪</option><option value="za">South Africa 🇿🇦</option><option value="ug">Uganda 🇺🇬</option><option value="tz">Tanzania 🇹🇿</option><option value="rw">Rwanda 🇷🇼</option><option value="zm">Zambia 🇿🇲</option><option value="zw">Zimbabwe 🇿🇼</option><option value="bw">Botswana 🇧🇼</option><option value="na">Namibia 🇳🇦</option><option value="mw">Malawi 🇲🇼</option><option value="sl">Sierra Leone 🇸🇱</option><option value="lr">Liberia 🇱🇷</option><option value="gm">Gambia 🇬🇲</option></select></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:13px;margin-bottom:12px;" onclick="validateSignup()">Create Account →</button>
+      <div class="divider">or sign up with</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;"><button class="btn btn-outline" style="justify-content:center;">🌐 Google</button><button class="btn btn-outline" style="justify-content:center;">📘 Facebook</button></div>
+      <div style="text-align:center;font-size:13px;color:var(--gray);">Already have an account? <span onclick="go('login')" style="color:var(--teal);font-weight:700;cursor:pointer;">Log in</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 11: OTP ══ -->
+<div id="screen-otp" class="screen">
+  <div class="auth-wrap">
+    <div class="auth-card" style="text-align:center;">
+      <div style="font-size:52px;margin-bottom:12px;">📱</div>
+      <h2>Verify Your Number</h2>
+      <p>We sent a 4-digit code to <strong id="otpPhone">+234 801 234 5678</strong></p>
+      <div class="otp-box">
+        <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this)" onkeydown="otpBack(event,this)"/>
+        <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this)" onkeydown="otpBack(event,this)"/>
+        <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this)" onkeydown="otpBack(event,this)"/>
+        <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this)" onkeydown="otpBack(event,this)"/>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:13px;" onclick="showToastAndGo('dashboard','✅ Account verified! Welcome to LearnLoop 🎉')">Verify & Continue →</button>
+      <div style="margin-top:14px;font-size:13px;color:var(--gray);">Didn't get the code? <span style="color:var(--teal);font-weight:700;cursor:pointer;" onclick="showToast('📱 Code resent!')">Resend</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN 12: LOGIN ══ -->
+<div id="screen-login" class="screen">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div style="text-align:center;font-size:38px;margin-bottom:6px;">👋</div>
+      <h2 style="text-align:center;">Welcome Back</h2>
+      <p style="text-align:center;">Continue your learning journey</p>
+      <div class="form-group"><label class="form-label">Phone Number or Email</label><input class="form-input" type="text" id="loginContact" placeholder="e.g. 08012345678"/></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="loginPass" placeholder="Your password"/></div>
+      <div style="text-align:right;font-size:13px;margin-bottom:16px;"><span style="color:var(--teal);cursor:pointer;font-weight:600;">Forgot password?</span></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:13px;margin-bottom:12px;" onclick="validateLogin()">Log In →</button>
+      <div class="divider">or</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;"><button class="btn btn-outline" style="justify-content:center;">🌐 Google</button><button class="btn btn-outline" style="justify-content:center;">📘 Facebook</button></div>
+      <div style="text-align:center;font-size:13px;color:var(--gray);">New to LearnLoop? <span onclick="go('signup')" style="color:var(--teal);font-weight:700;cursor:pointer;">Create account</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="globalToast"></div>
+
+<script>
+// ══ COUNTRY DATA ══
+const COUNTRIES = {
+  ng:{name:'Nigeria',flag:'🇳🇬',currency:'Naira',symbol:'₦',rate:1600,mobile:['MTN MoMo','Airtel Money','OPay','PalmPay','USSD']},
+  gh:{name:'Ghana',flag:'🇬🇭',currency:'Cedi',symbol:'₵',rate:15,mobile:['MTN MoMo','Vodafone Cash','AirtelTigo Money']},
+  ke:{name:'Kenya',flag:'🇰🇪',currency:'Shilling',symbol:'KSh',rate:130,mobile:['M-Pesa','Airtel Money','T-Kash']},
+  za:{name:'South Africa',flag:'🇿🇦',currency:'Rand',symbol:'R',rate:19,mobile:['SnapScan','Capitec Pay','FNB Pay','Ozow']},
+  ug:{name:'Uganda',flag:'🇺🇬',currency:'Shilling',symbol:'USh',rate:3800,mobile:['MTN MoMo','Airtel Money']},
+  tz:{name:'Tanzania',flag:'🇹🇿',currency:'Shilling',symbol:'TSh',rate:2700,mobile:['M-Pesa','Tigo Pesa','Airtel Money']},
+  rw:{name:'Rwanda',flag:'🇷🇼',currency:'Franc',symbol:'RF',rate:1350,mobile:['MTN MoMo','Airtel Money']},
+  zm:{name:'Zambia',flag:'🇿🇲',currency:'Kwacha',symbol:'K',rate:27,mobile:['MTN MoMo','Airtel Money','Zamtel Kwacha']},
+  zw:{name:'Zimbabwe',flag:'🇿🇼',currency:'USD',symbol:'US$',rate:1,mobile:['EcoCash','Innbucks','ZimSwitch']},
+  bw:{name:'Botswana',flag:'🇧🇼',currency:'Pula',symbol:'P',rate:14,mobile:['Orange Money','Smega','MyZaka']},
+  na:{name:'Namibia',flag:'🇳🇦',currency:'Dollar',symbol:'N$',rate:19,mobile:['FNB Namibia','Bank Windhoek Pay']},
+  mw:{name:'Malawi',flag:'🇲🇼',currency:'Kwacha',symbol:'MK',rate:1750,mobile:['Airtel Money','TNM Mpamba']},
+  sl:{name:'Sierra Leone',flag:'🇸🇱',currency:'Leone',symbol:'Le',rate:22000,mobile:['Africell Money','Orange Money']},
+  lr:{name:'Liberia',flag:'🇱🇷',currency:'Dollar',symbol:'L$',rate:190,mobile:['Lonestar MTN MoMo','Orange Money']},
+  gm:{name:'Gambia',flag:'🇬🇲',currency:'Dalasi',symbol:'D',rate:70,mobile:['Africell','QMoney','AfriMoney']},
+};
+
+let selectedCountry = 'ng';
+let activeChip = 'all';
+let slideIndex = 0;
+let slideTimer = null;
+let videoPlaying = false;
+let videoProgress = 35;
+let videoInterval = null;
+const screens = ['landing','browse','detail','checkout','success','player','dashboard','instructor','create','signup','otp','login'];
+
+// ══ INIT ══
+window.addEventListener('DOMContentLoaded', ()=>{
+  buildCountryDropdown();
+  buildLandingCountryGrid();
+  updateAllPrices();
+  animateCounters();
+  startSlider();
+  initReveal();
+});
+
+// ══ NAVIGATION ══
+function go(name){
+  screens.forEach(s=>{const el=document.getElementById('screen-'+s);if(el)el.classList.remove('active');});
+  const t=document.getElementById('screen-'+name);
+  if(t){t.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+  if(name==='landing'){setTimeout(animateCounters,350);startSlider();}
+  if(name==='dashboard'){setTimeout(animateProgressBars,300);}
+  if(name==='checkout'){updateCheckout();}
+  if(name==='detail'){updateDetailSidebar();}
+}
+
+// ══ COUNTRY PICKER ══
+function buildCountryDropdown(){
+  const list = document.getElementById('countryList');
+  if(!list) return;
+  list.innerHTML = Object.entries(COUNTRIES).map(([code,c])=>`
+    <div class="cd-item ${code===selectedCountry?'active':''}" onclick="selectCountry('${code}')">
+      <span class="cd-flag">${c.flag}</span>
+      <div class="cd-info">
+        <div class="cd-country">${c.name}</div>
+        <div class="cd-currency">${c.symbol} ${c.currency} · ${c.mobile[0]}</div>
+      </div>
+    </div>`).join('');
+}
+
+function buildLandingCountryGrid(){
+  const grid = document.getElementById('landingCountryGrid');
+  if(!grid) return;
+  grid.innerHTML = Object.entries(COUNTRIES).map(([code,c])=>`
+    <div class="country-card ${code===selectedCountry?'selected':''}" onclick="selectCountry('${code}');showToast('${c.flag} Switched to ${c.name} — ${c.symbol} ${c.currency}')">
+      <div class="cc-flag">${c.flag}</div>
+      <div class="cc-name">${c.name}</div>
+      <div class="cc-currency">${c.symbol} ${c.currency}</div>
+      <div class="cc-mobile">${c.mobile[0]}</div>
+    </div>`).join('');
+}
+
+function toggleCountryDropdown(){
+  document.getElementById('countryDropdown').classList.toggle('open');
+}
+
+document.addEventListener('click',e=>{
+  if(!document.getElementById('countryPicker')?.contains(e.target)){
+    document.getElementById('countryDropdown')?.classList.remove('open');
+  }
+});
+
+function selectCountry(code){
+  selectedCountry = code;
+  const c = COUNTRIES[code];
+  document.getElementById('countryBtn').textContent = `${c.flag} ${c.name} · ${c.symbol}`;
+  document.getElementById('countryDropdown').classList.remove('open');
+  buildCountryDropdown();
+  buildLandingCountryGrid();
+  updateAllPrices();
+  updateCheckout();
+  updateDetailSidebar();
+  buildPaymentMethods();
+  showToast(`${c.flag} Switched to ${c.name} — prices now in ${c.symbol} ${c.currency}`);
+}
+
+// ══ CURRENCY ══
+function fmt(usd){
+  const c = COUNTRIES[selectedCountry];
+  const val = usd * c.rate;
+  if(val >= 1000) return c.symbol + Math.round(val).toLocaleString();
+  return c.symbol + val.toFixed(val<10?2:0);
+}
+
+function updateAllPrices(){
+  document.querySelectorAll('[data-usd]').forEach(el=>{
+    el.textContent = fmt(parseFloat(el.dataset.usd));
+  });
+  document.querySelectorAll('[data-usd-old]').forEach(el=>{
+    el.textContent = fmt(parseFloat(el.dataset.usdOld));
+  });
+}
+
+function updateDetailSidebar(){
+  const dp = document.getElementById('detailPrice');
+  const dpo = document.getElementById('detailPriceOld');
+  if(dp) dp.textContent = fmt(2.20);
+  if(dpo) dpo.textContent = fmt(5) + ' — 56% off';
+}
+
+function updateCheckout(){
+  const old = fmt(5), price = fmt(2.20);
+  const el1=document.getElementById('checkoutOld');
+  const el2=document.getElementById('checkoutDiscount');
+  const el3=document.getElementById('checkoutTotal');
+  if(el1)el1.textContent=old;
+  if(el2)el2.textContent='-'+fmt(5-2.20);
+  if(el3)el3.textContent=price;
+  buildPaymentMethods();
+}
+
+// ══ PAYMENT METHODS ══
+function buildPaymentMethods(){
+  const c = COUNTRIES[selectedCountry];
+  const container = document.getElementById('paymentMethods');
+  if(!container) return;
+  const methods = [
+    {id:'momo',icon:'📱',label:'Mobile Money',sub:c.mobile[0]+(c.mobile[1]?', '+c.mobile[1]:'')},
+    {id:'card',icon:'💳',label:'Card Payment',sub:'Visa, Mastercard, Verve'},
+    {id:'bank',icon:'🏦',label:'Bank Transfer',sub:'Any local bank'},
+    {id:'ussd',icon:'📞',label:'USSD',sub:'*737# and similar'},
+  ];
+  container.innerHTML = methods.map((m,i)=>`
+    <div class="pm-option ${i===0?'selected':''}" onclick="selectPM(this,'${m.id}')">
+      <div class="pm-icon">${m.icon}</div>
+      <div class="pm-label">${m.label}</div>
+      <div class="pm-sub">${m.sub}</div>
+    </div>`).join('');
+  // populate momo dropdown
+  const momoSel = document.getElementById('momoProvider');
+  if(momoSel){
+    momoSel.innerHTML = c.mobile.map(m=>`<option>${m}</option>`).join('');
+  }
+  const momoInfo = document.getElementById('momoInfo');
+  if(momoInfo) momoInfo.textContent = `📱 You'll receive a prompt on your phone to approve ${fmt(2.20)}.`;
+  const mf=document.getElementById('momo-fields');
+  const cf=document.getElementById('card-fields');
+  if(mf)mf.style.display='block';
+  if(cf)cf.style.display='none';
+}
+
+function selectPM(el, type){
+  document.querySelectorAll('.pm-option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  const mf=document.getElementById('momo-fields');
+  const cf=document.getElementById('card-fields');
+  if(mf)mf.style.display=(type==='momo'||type==='ussd')?'block':'none';
+  if(cf)cf.style.display=type==='card'?'block':'none';
+}
+
+// ══ FORM VALIDATION ══
+function validateSignup(){
+  const name=document.getElementById('signupName')?.value.trim();
+  const contact=document.getElementById('signupContact')?.value.trim();
+  const pass=document.getElementById('signupPass')?.value;
+  const countryCode=document.getElementById('signupCountry')?.value;
+  if(!name){showToast('⚠️ Please enter your full name','#e53e3e');return;}
+  if(!contact){showToast('⚠️ Please enter phone or email','#e53e3e');return;}
+  if(!pass||pass.length<8){showToast('⚠️ Password must be at least 8 characters','#e53e3e');return;}
+  if(countryCode) selectCountry(countryCode);
+  go('otp');
+}
+
+function validateLogin(){
+  const contact=document.getElementById('loginContact')?.value.trim();
+  const pass=document.getElementById('loginPass')?.value;
+  if(!contact){showToast('⚠️ Please enter phone or email','#e53e3e');return;}
+  if(!pass){showToast('⚠️ Please enter your password','#e53e3e');return;}
+  showToastAndGo('dashboard','👋 Welcome back, Zainab!');
+}
+
+function processPayment(){
+  const email=document.getElementById('emailInput')?.value.trim();
+  if(!email||!email.includes('@')){
+    const err=document.getElementById('emailError');
+    const inp=document.getElementById('emailInput');
+    if(err)err.style.display='block';
+    if(inp)inp.classList.add('error');
+    return;
+  }
+  
+  // Simulated Mobile Money Flow
+  const mf = document.getElementById('momo-fields');
+  if (mf && mf.style.display !== 'none') {
+    const num = document.getElementById('momoNumber')?.value;
+    if(!num) {
+      showToast('⚠️ Please enter your mobile money number', '#e53e3e');
+      return;
+    }
+    const btn = document.querySelector('.checkout-body .btn-primary');
+    const oldText = btn.innerHTML;
+    btn.innerHTML = '⏳ Waiting for mobile approval...';
+    btn.disabled = true;
+    showToast('📱 Please check your phone for the USSD prompt', '#F5A623');
+    
+    setTimeout(() => {
+      btn.innerHTML = oldText;
+      btn.disabled = false;
+      showToastAndGo('success','🎉 Payment successful! Enjoy your course!');
+    }, 3000);
+  } else {
+    showToastAndGo('success','🎉 Payment successful! Enjoy your course!');
+  }
+}
+
+// ══ SEARCH & FILTER ══
+function filterCourses(){
+  const q=(document.getElementById('searchInput')?.value||'').toLowerCase();
+  const cards=document.querySelectorAll('#courseGrid .card');
+  let visible=0;
+  cards.forEach(card=>{
+    const title=(card.dataset.title||'').toLowerCase();
+    const cat=(card.dataset.cat||'');
+    const matchQ=!q||title.includes(q);
+    const matchCat=activeChip==='all'||cat===activeChip;
+    const show=matchQ&&matchCat;
+    card.style.display=show?'':'none';
+    if(show)visible++;
+  });
+  const rc=document.getElementById('resultCount');
+  if(rc)rc.innerHTML=`Showing <strong>${visible}</strong> of 1,200 courses`;
+  const nr=document.getElementById('noResults');
+  if(nr)nr.style.display=visible===0?'block':'none';
+}
+
+function setChip(el,cat){
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  activeChip=cat;
+  filterCourses();
+}
+
+function resetFilters(){
+  activeChip='all';
+  document.querySelectorAll('.filter-chip').forEach((c,i)=>{c.classList.toggle('active',i===0);});
+  const si=document.getElementById('searchInput');
+  if(si)si.value='';
+  filterCourses();
+}
+
+// ══ VIDEO PLAYER ══
+function togglePlay(){
+  const pb=document.getElementById('play-pause-btn');
+  const big=document.getElementById('playBtn');
+  if(!videoPlaying){
+    videoPlaying=true;
+    if(pb)pb.textContent='⏸';if(big)big.textContent='⏸';
+    videoInterval=setInterval(()=>{
+      videoProgress=Math.min(videoProgress+0.35,100);
+      const fill=document.getElementById('vcFill');
+      if(fill)fill.style.width=videoProgress+'%';
+      const t=document.getElementById('vcTime');
+      if(t){const s=Math.floor((videoProgress/100)*22*60);t.textContent=`${Math.floor(s/60)}:${(s%60).toString().padStart(2,'0')} / 22:15`;}
+      if(videoProgress>=100){clearInterval(videoInterval);videoPlaying=false;if(pb)pb.textContent='▶';if(big)big.textContent='▶';}
+    },200);
+  } else {
+    videoPlaying=false;clearInterval(videoInterval);
+    if(pb)pb.textContent='▶';if(big)big.textContent='▶';
+  }
+}
+
+function seekVideo(e){
+  const r=e.currentTarget.getBoundingClientRect();
+  videoProgress=Math.max(0,Math.min(100,((e.clientX-r.left)/r.width)*100));
+  const fill=document.getElementById('vcFill');if(fill)fill.style.width=videoProgress+'%';
+}
+
+
+function toggleOfflineMode(cb) {
+  if (cb.checked) {
+    showToast('📴 Offline Mode Active: You can only view downloaded content.', '#0D6E6E');
+    document.getElementById('screen-dashboard').style.border = '4px solid #0D6E6E';
+  } else {
+    showToast('📶 Back Online: All content available.');
+    document.getElementById('screen-dashboard').style.border = 'none';
+  }
+}
+
+// ══ TOASTS ══
+function showDownloadToast(){
+  const t=document.getElementById('downloadToast');
+  if(t){t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+}
+
+function showToast(msg, bg){
+  const t=document.getElementById('globalToast');
+  if(t){t.textContent=msg;t.style.background=bg||'var(--green)';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
+}
+
+function showToastAndGo(screen,msg){
+  showToast(msg);go(screen);
+}
+
+// ══ OTP ══
+function otpNext(input){
+  if(input.value.length===1){const n=input.nextElementSibling;if(n&&n.classList.contains('otp-digit'))n.focus();}
+}
+function otpBack(e,input){
+  if(e.key==='Backspace'&&!input.value){const p=input.previousElementSibling;if(p&&p.classList.contains('otp-digit')){p.focus();p.value='';}}
+}
+
+// ══ TESTIMONIAL SLIDER ══
+function goSlide(i){
+  slideIndex=Math.max(0,Math.min(i,3));
+  const track=document.getElementById('testimonialTrack');
+  if(track)track.style.transform=`translateX(-${slideIndex*100}%)`;
+  document.querySelectorAll('.dot').forEach((d,idx)=>d.classList.toggle('active',idx===slideIndex));
+}
+function nextSlide(){goSlide((slideIndex+1)%4);}
+function prevSlide(){goSlide((slideIndex+3)%4);}
+function startSlider(){clearInterval(slideTimer);slideTimer=setInterval(nextSlide,5000);}
+
+// ══ TABS ══
+function switchTab(name,el){
+  document.querySelectorAll('#detailTabs .tab').forEach(t=>t.classList.remove('active'));
+  if(el)el.classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(tc=>tc.classList.remove('active'));
+  const tc=document.getElementById('tab-'+name);if(tc)tc.classList.add('active');
+}
+
+// ══ COUNTERS ══
+function animateCounters(){
+  document.querySelectorAll('.hero-stat .num[data-target]').forEach(el=>{
+    const target=+el.dataset.target;const dur=1600;const start=performance.now();
+    const step=ts=>{
+      const p=Math.min((ts-start)/dur,1);
+      const ease=1-Math.pow(1-p,3);
+      const val=Math.floor(ease*target);
+      el.textContent=val>=1000?(val/1000).toFixed(1)+'k+':val+(target>=100?'+':'');
+      if(p<1)requestAnimationFrame(step);
+      else el.textContent=target>=1000?(target/1000).toFixed(1)+'k+':target+(target>=100?'+':'');
+    };
+    requestAnimationFrame(step);
+  });
+}
+
+// ══ PROGRESS BARS ══
+function animateProgressBars(){
+  document.querySelectorAll('.progress-fill[data-width]').forEach(bar=>{
+    setTimeout(()=>{bar.style.width=bar.dataset.width;},100);
+  });
+}
+
+// ══ SCROLL REVEAL ══
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+  },{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+// ══ AUTH TOGGLE ══
+document.querySelectorAll('.auth-toggle').forEach(tog=>{
+  tog.querySelectorAll('.at-btn').forEach(btn=>{
+    btn.addEventListener('click',function(){tog.querySelectorAll('.at-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');});
+  });
+});
+
+// ══ FORM INPUT RESET ERROR ══
+document.querySelectorAll('.form-input').forEach(inp=>{
+  inp.addEventListener('input',()=>{inp.classList.remove('error');const err=inp.nextElementSibling;if(err&&err.classList.contains('form-error'))err.style.display='none';});
+});
+</script>
+</body>
+</html>

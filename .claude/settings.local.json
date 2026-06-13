@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python \"C:\\\\Users\\\\HP\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\619cdb24-c937-4fa9-be3c-82957a0fdee9\\\\48f2b0d6-b848-44e5-98f1-91de4ff7d59b\\\\skills\\\\docx\\\\scripts\\\\office\\\\unpack.py\" \"Learn Loop PRD.docx\" unpacked_prd/)",
+      "Bash(python \"C:\\\\Users\\\\HP\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\619cdb24-c937-4fa9-be3c-82957a0fdee9\\\\48f2b0d6-b848-44e5-98f1-91de4ff7d59b\\\\skills\\\\docx\\\\scripts\\\\office\\\\validate.py\" \"Learn Loop PRD.docx\")",
+      "Bash(python -c ' *)",
+      "Bash(npm list *)",
+      "Bash(node gen_prd.js)",
+      "Bash(node gen_user_stories.js)",
+      "Bash(npm root *)",
+      "Bash(node -e \"require\\('docx'\\); console.log\\('ok'\\)\")",
+      "Read(//c/Users/HP/AppData/Roaming/Claude/local-agent-mode-sessions/skills-plugin/619cdb24-c937-4fa9-be3c-82957a0fdee9/48f2b0d6-b848-44e5-98f1-91de4ff7d59b/skills/docx/**)",
+      "Bash(ls \"C:\\\\Users\\\\HP\\\\AppData\\\\Roaming\\\\npm\\\\node_modules\\\\docx\" 2>/dev/null || echo \"not there\" && npm list -g docx 2>&1 | head -5)",
+      "Bash(node -e \"const docx = require\\('C:\\\\\\\\\\\\\\\\Users\\\\\\\\\\\\\\\\HP\\\\\\\\\\\\\\\\AppData\\\\\\\\\\\\\\\\Roaming\\\\\\\\\\\\\\\\npm\\\\\\\\\\\\\\\\node_modules\\\\\\\\\\\\\\\\docx'\\); console.log\\('ok'\\)\")",
+      "Bash(npm install *)",
+      "Bash(node gen_updates.js)",
+      "Bash(del gen_prd.js gen_user_stories.js gen_updates.js)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\HP\\\\Documents\\\\Product Management\\\\Capstone Project\\\\LearnLoop\\\\Dev\\\\gen_prd.js\", \"C:\\\\Users\\\\HP\\\\Documents\\\\Product Management\\\\Capstone Project\\\\LearnLoop\\\\Dev\\\\gen_user_stories.js\", \"C:\\\\Users\\\\HP\\\\Documents\\\\Product Management\\\\Capstone Project\\\\LearnLoop\\\\Dev\\\\gen_updates.js\" -ErrorAction SilentlyContinue)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

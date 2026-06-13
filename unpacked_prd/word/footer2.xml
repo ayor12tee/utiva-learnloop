@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<w:ftr xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" xml:space="preserve">
+  <w:p>
+    <w:pPr>
+      <w:pStyle w:val="BodyText"/>
+      <w:spacing w:line="14" w:lineRule="auto"/>
+      <w:rPr>
+        <w:sz w:val="20"/>
+      </w:rPr>
+    </w:pPr>
+    <w:r>
+      <w:rPr/>
+      <w:drawing>
+        <wp:anchor distT="0" distB="0" distL="0" distR="0" allowOverlap="1" layoutInCell="1" locked="0" behindDoc="1" simplePos="0" relativeHeight="487075328">
+          <wp:simplePos x="0" y="0"/>
+          <wp:positionH relativeFrom="page">
+            <wp:posOffset>3168777</wp:posOffset>
+          </wp:positionH>
+          <wp:positionV relativeFrom="page">
+            <wp:posOffset>9717309</wp:posOffset>
+          </wp:positionV>
+          <wp:extent cx="218313" cy="88582"/>
+          <wp:effectExtent l="0" t="0" r="0" b="0"/>
+          <wp:wrapNone/>
+          <wp:docPr id="31" name="image16.png"/>
+          <wp:cNvGraphicFramePr>
+            <a:graphicFrameLocks noChangeAspect="1"/>
+          </wp:cNvGraphicFramePr>
+          <a:graphic>
+            <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+              <pic:pic>
+                <pic:nvPicPr>
+                  <pic:cNvPr id="32" name="image16.png"/>
+                  <pic:cNvPicPr/>
+                </pic:nvPicPr>
+                <pic:blipFill>
+                  <a:blip r:embed="rId1" cstate="print"/>
+                  <a:stretch>
+                    <a:fillRect/>
+                  </a:stretch>
+                </pic:blipFill>
+                <pic:spPr>
+                  <a:xfrm>
+                    <a:off x="0" y="0"/>
+                    <a:ext cx="218313" cy="88582"/>
+                  </a:xfrm>
+                  <a:prstGeom prst="rect">
+                    <a:avLst/>
+                  </a:prstGeom>
+                </pic:spPr>
+              </pic:pic>
+            </a:graphicData>
+          </a:graphic>
+        </wp:anchor>
+      </w:drawing>
+    </w:r>
+    <w:r>
+      <w:rPr/>
+      <w:pict>
+        <v:shape style="position:absolute;margin-left:269.595001pt;margin-top:763.702393pt;width:4.6pt;height:6.85pt;mso-position-horizontal-relative:page;mso-position-vertical-relative:page;z-index:-16240640" id="docshape85" coordorigin="5392,15274" coordsize="92,137" path="m5411,15310l5394,15308,5394,15298,5399,15288,5409,15284,5416,15276,5426,15274,5452,15274,5462,15276,5469,15284,5476,15288,5423,15288,5414,15298,5411,15303,5411,15310xm5478,15397l5447,15397,5454,15394,5459,15392,5464,15387,5466,15380,5466,15365,5464,15358,5457,15356,5452,15351,5445,15349,5423,15349,5423,15334,5442,15334,5450,15332,5454,15327,5459,15325,5462,15317,5462,15298,5457,15293,5452,15291,5445,15288,5476,15288,5481,15298,5481,15317,5478,15325,5469,15334,5462,15339,5452,15341,5462,15341,5476,15351,5481,15356,5483,15363,5483,15385,5481,15394,5478,15397xm5452,15411l5426,15411,5414,15409,5406,15401,5399,15397,5394,15387,5392,15375,5409,15373,5411,15389,5421,15397,5478,15397,5471,15401,5464,15409,5452,15411xe" filled="true" fillcolor="#2d3648" stroked="false">
+          <v:path arrowok="t"/>
+          <v:fill type="solid"/>
+          <w10:wrap type="none"/>
+        </v:shape>
+      </w:pict>
+    </w:r>
+    <w:r>
+      <w:rPr/>
+      <w:pict>
+        <v:group style="position:absolute;margin-left:277.049988pt;margin-top:763.822449pt;width:13.35pt;height:6.75pt;mso-position-horizontal-relative:page;mso-position-vertical-relative:page;z-index:-16240128" id="docshapegroup86" coordorigin="5541,15276" coordsize="267,135">
+          <v:shape style="position:absolute;left:5541;top:15295;width:125;height:116" type="#_x0000_t75" id="docshape87" stroked="false">
+            <v:imagedata r:id="rId2" o:title=""/>
+          </v:shape>
+          <v:shape style="position:absolute;left:5718;top:15276;width:89;height:133" id="docshape88" coordorigin="5719,15276" coordsize="89,133" path="m5762,15409l5743,15409,5744,15396,5769,15325,5791,15291,5719,15291,5719,15276,5808,15276,5808,15288,5798,15304,5790,15317,5784,15329,5779,15339,5772,15351,5769,15363,5764,15373,5762,15385,5762,15409xe" filled="true" fillcolor="#2d3648" stroked="false">
+            <v:path arrowok="t"/>
+            <v:fill type="solid"/>
+          </v:shape>
+          <w10:wrap type="none"/>
+        </v:group>
+      </w:pict>
+    </w:r>
+    <w:r>
+      <w:rPr/>
+      <w:pict>
+        <v:shape style="position:absolute;margin-left:306.749023pt;margin-top:764.759949pt;width:40.3pt;height:5.8pt;mso-position-horizontal-relative:page;mso-position-vertical-relative:page;z-index:-16239616" id="docshape89" coordorigin="6135,15295" coordsize="806,116" path="m6234,15327l6224,15312,6210,15303,6200,15300,6188,15300,6176,15301,6166,15304,6157,15309,6150,15315,6143,15323,6139,15333,6136,15344,6135,15356,6135,15368,6137,15377,6142,15385,6147,15394,6152,15399,6159,15404,6169,15409,6176,15411,6198,15411,6207,15409,6217,15404,6224,15399,6229,15392,6234,15382,6222,15377,6215,15387,6207,15394,6198,15398,6188,15399,6176,15399,6169,15394,6154,15380,6150,15368,6150,15341,6154,15332,6159,15325,6166,15317,6176,15312,6188,15312,6195,15312,6202,15315,6212,15320,6217,15325,6219,15332,6234,15327xm6320,15353l6318,15344,6310,15337,6306,15329,6306,15358,6306,15380,6301,15394,6296,15399,6291,15401,6274,15401,6270,15399,6267,15392,6262,15387,6260,15380,6260,15358,6262,15349,6267,15344,6270,15339,6277,15337,6291,15337,6298,15339,6303,15349,6306,15358,6306,15329,6296,15327,6284,15327,6268,15329,6256,15337,6248,15349,6246,15368,6246,15382,6250,15392,6255,15399,6262,15406,6272,15411,6296,15411,6303,15409,6310,15401,6318,15394,6320,15382,6320,15353xm6404,15344l6402,15337,6392,15327,6366,15327,6361,15329,6354,15337,6351,15341,6351,15329,6349,15329,6349,15327,6337,15327,6337,15409,6351,15409,6351,15353,6356,15344,6358,15341,6361,15339,6366,15337,6380,15337,6383,15339,6385,15339,6387,15341,6387,15344,6390,15349,6390,15409,6404,15409,6404,15344xm6457,15298l6455,15298,6450,15296,6440,15296,6436,15298,6433,15303,6428,15305,6428,15327,6416,15327,6416,15337,6428,15337,6428,15409,6440,15409,6440,15337,6457,15337,6457,15327,6440,15327,6440,15315,6443,15312,6443,15310,6445,15308,6457,15308,6457,15298xm6481,15327l6467,15327,6467,15409,6481,15409,6481,15327xm6481,15296l6467,15296,6467,15310,6481,15310,6481,15296xm6568,15296l6553,15296,6553,15339,6553,15356,6553,15380,6551,15387,6549,15392,6544,15399,6539,15401,6525,15401,6520,15399,6517,15394,6513,15387,6513,15349,6517,15344,6520,15339,6525,15337,6539,15337,6544,15339,6549,15344,6551,15349,6553,15356,6553,15339,6552,15337,6551,15334,6549,15332,6539,15327,6527,15327,6514,15329,6505,15337,6500,15349,6498,15368,6498,15382,6501,15394,6510,15409,6517,15411,6539,15411,6549,15406,6551,15401,6553,15397,6553,15406,6556,15409,6568,15409,6568,15397,6568,15339,6568,15296xm6657,15370l6656,15361,6654,15351,6648,15338,6646,15337,6642,15334,6642,15351,6642,15361,6599,15361,6599,15353,6602,15346,6609,15339,6614,15337,6628,15337,6638,15341,6642,15351,6642,15334,6636,15330,6621,15327,6609,15327,6602,15329,6587,15344,6585,15353,6585,15382,6587,15392,6594,15399,6602,15409,6609,15411,6640,15411,6650,15404,6650,15401,6654,15392,6642,15387,6642,15392,6640,15394,6635,15397,6633,15399,6628,15401,6614,15401,6609,15399,6604,15394,6599,15380,6599,15370,6657,15370xm6741,15344l6739,15337,6734,15332,6731,15327,6703,15327,6700,15329,6695,15332,6693,15337,6688,15341,6688,15327,6676,15327,6676,15409,6688,15409,6688,15353,6691,15349,6695,15344,6697,15341,6698,15339,6705,15337,6719,15337,6722,15339,6724,15339,6724,15341,6727,15344,6727,15409,6741,15409,6741,15344xm6794,15399l6780,15399,6780,15397,6777,15397,6777,15337,6792,15337,6792,15327,6777,15327,6777,15308,6768,15308,6763,15327,6753,15327,6753,15337,6763,15337,6763,15404,6768,15411,6789,15411,6794,15409,6794,15399xm6818,15327l6806,15327,6806,15409,6818,15409,6818,15327xm6818,15296l6806,15296,6806,15310,6818,15310,6818,15296xm6917,15401l6909,15401,6907,15399,6905,15399,6905,15394,6905,15368,6905,15344,6900,15337,6890,15327,6852,15327,6842,15334,6840,15349,6854,15349,6854,15344,6861,15337,6883,15337,6885,15341,6888,15344,6890,15349,6890,15358,6890,15368,6890,15380,6888,15385,6885,15387,6883,15392,6881,15394,6878,15397,6869,15401,6859,15401,6849,15392,6849,15382,6852,15380,6852,15377,6859,15370,6876,15370,6890,15368,6890,15358,6871,15361,6859,15361,6849,15363,6845,15368,6837,15373,6835,15377,6835,15394,6837,15399,6847,15409,6852,15411,6866,15411,6873,15409,6878,15406,6883,15404,6884,15401,6885,15399,6890,15394,6890,15399,6893,15404,6900,15411,6912,15411,6917,15409,6917,15401xm6941,15295l6926,15295,6926,15408,6941,15408,6941,15295xe" filled="true" fillcolor="#495467" stroked="false">
+          <v:path arrowok="t"/>
+          <v:fill type="solid"/>
+          <w10:wrap type="none"/>
+        </v:shape>
+      </w:pict>
+    </w:r>
+    <w:r>
+      <w:rPr/>
+      <w:pict>
+        <v:rect style="position:absolute;margin-left:298.200012pt;margin-top:767.879944pt;width:.839996pt;height:.839951pt;mso-position-horizontal-relative:page;mso-position-vertical-relative:page;z-index:-16239104" id="docshape90" filled="true" fillcolor="#495467" stroked="false">
+          <v:fill type="solid"/>
+          <w10:wrap type="none"/>
+        </v:rect>
+      </w:pict>
+    </w:r>
+    <w:r>
+      <w:rPr/>
+      <w:pict>
+        <v:shape style="position:absolute;margin-left:52.552502pt;margin-top:760.094971pt;width:491pt;height:.1pt;mso-position-horizontal-relative:page;mso-position-vertical-relative:page;z-index:-16238592" id="docshape91" coordorigin="1051,15202" coordsize="9820,0" path="m1051,15202l10870,15202m1051,15202l10870,15202e" filled="false" stroked="true" strokeweight=".6015pt" strokecolor="#cad4df">
+          <v:path arrowok="t"/>
+          <v:stroke dashstyle="solid"/>
+          <w10:wrap type="none"/>
+        </v:shape>
+      </w:pict>
+    </w:r>
+  </w:p>
+</w:ftr>
