@@ -374,18 +374,25 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
     <a onclick="go('browse')">Browse</a>
     <a onclick="go('instructor')">Teach</a>
     <a onclick="go('dashboard')">My Learning</a>
-    <!-- Country Picker -->
-    <div class="country-picker" id="countryPicker">
-      <button class="country-btn" onclick="toggleCountryDropdown()" id="countryBtn">
-        🇳🇬 Nigeria · ₦
-      </button>
-      <div class="country-dropdown" id="countryDropdown">
-        <div class="cd-header">Select Your Country</div>
-        <div id="countryList"></div>
+    <div id="nav-auth-guest">
+      <a onclick="go('login')" class="btn btn-secondary btn-sm">Log In</a>
+      <a onclick="go('signup')" class="btn btn-primary btn-sm">Get Started</a>
+    </div>
+    <div id="nav-auth-user" style="display:none;align-items:center;gap:10px;">
+      <div style="position:relative;" id="userMenuWrap">
+        <div onclick="toggleUserMenu()" style="display:flex;align-items:center;gap:8px;cursor:pointer;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.2);">
+          <div id="navAvatar" style="width:30px;height:30px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--navy);flex-shrink:0;"></div>
+          <span id="navName" style="color:#fff;font-size:13px;font-weight:600;"></span>
+          <span style="color:rgba(255,255,255,.6);font-size:10px;">▼</span>
+        </div>
+        <div id="userMenu" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--white);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18);min-width:200px;z-index:300;border:1px solid var(--border);overflow:hidden;">
+          <div onclick="go('dashboard')" style="padding:12px 16px;cursor:pointer;font-size:14px;display:flex;gap:10px;align-items:center;" onmouseover="this.style.background='#f1f3f5'" onmouseout="this.style.background=''">📚 My Learning</div>
+          <div onclick="go('instructor')" style="padding:12px 16px;cursor:pointer;font-size:14px;display:flex;gap:10px;align-items:center;" onmouseover="this.style.background='#f1f3f5'" onmouseout="this.style.background=''">🎓 Instructor Dashboard</div>
+          <div style="border-top:1px solid var(--border);"></div>
+          <div onclick="logoutUser()" style="padding:12px 16px;cursor:pointer;font-size:14px;color:#e53e3e;display:flex;gap:10px;align-items:center;" onmouseover="this.style.background='#fff5f5'" onmouseout="this.style.background=''">🚪 Log Out</div>
+        </div>
       </div>
     </div>
-    <a onclick="go('login')" class="btn btn-secondary btn-sm">Log In</a>
-    <a onclick="go('signup')" class="btn btn-primary btn-sm">Get Started</a>
   </div>
 </nav>
 
@@ -395,17 +402,17 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
     <div class="hero-orb hero-orb-1"></div>
     <div class="hero-orb hero-orb-2"></div>
     <div class="hero-content">
-      <div class="hero-badge">🌍 15 English-Speaking African Countries</div>
+      <div class="hero-badge">🌍 Africa-Rooted · Globally Open</div>
       <h1>Learn the Skills That <span>Pay,</span> From Teachers Who Get It.</h1>
-      <p>Africa's first localized e-learning marketplace. Affordable courses from local experts. Pay with mobile money. Learn offline.</p>
+      <p>A skills marketplace built in Africa, open to learners and educators everywhere. Local context. Real instructors. Any currency.</p>
       <div class="hero-actions">
         <button class="btn btn-primary" onclick="go('browse')">🚀 Explore Courses</button>
         <button class="btn btn-secondary" onclick="go('signup')">🎓 Start Teaching</button>
       </div>
       <div class="hero-stats">
         <div class="hero-stat"><div class="num" data-target="18500">0</div><div class="lbl">Active Learners</div></div>
-        <div class="hero-stat"><div class="num" data-target="560">0</div><div class="lbl">Local Instructors</div></div>
-        <div class="hero-stat"><div class="num" data-target="15">0</div><div class="lbl">Countries</div></div>
+        <div class="hero-stat"><div class="num" data-target="560">0</div><div class="lbl">Expert Instructors</div></div>
+        <div class="hero-stat"><div class="num" data-target="80">0</div><div class="lbl">Countries Reached</div></div>
         <div class="hero-stat"><div class="num" data-target="1200">0</div><div class="lbl">Courses</div></div>
         <div class="hero-stat"><div class="num">4.8★</div><div class="lbl">Avg. Rating</div></div>
       </div>
@@ -416,21 +423,44 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
   <div class="trust-strip">
     <div class="trust-inner">
       <span>✅ No credit card needed</span><div class="trust-divider"></div>
-      <span>📱 Mobile money in 15 countries</span><div class="trust-divider"></div>
+      <span>📱 Mobile money & international cards</span><div class="trust-divider"></div>
       <span>📥 Learn offline anywhere</span><div class="trust-divider"></div>
       <span>🏆 Certificates included</span><div class="trust-divider"></div>
       <span>🔒 30-day money-back guarantee</span>
     </div>
   </div>
 
-  <!-- Countries We Serve -->
+  <!-- Global + Local Section -->
   <div class="section" style="background:var(--white);">
     <div class="container">
       <div class="section-header reveal">
-        <h2>Where We Operate</h2>
-        <p>Learn in your local currency, pay with local mobile money across 15 English-speaking African countries</p>
+        <h2>Built in Africa. Open to the World.</h2>
+        <p>Whether you're a learner in Lagos or London, an instructor in Nairobi or New York — LearnLoop is your platform.</p>
       </div>
-      <div class="country-grid reveal" id="landingCountryGrid"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:0 auto;" class="reveal">
+        <div style="background:linear-gradient(135deg,var(--navy),#1a4a8a);border-radius:16px;padding:28px;color:#fff;">
+          <div style="font-size:36px;margin-bottom:14px;">🌍</div>
+          <h3 style="font-size:18px;font-weight:800;margin-bottom:10px;">For Learners Everywhere</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:16px;">Access Africa's best practical courses from anywhere in the world. Pay in your currency — mobile money, card, or bank transfer.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:13px;display:flex;gap:8px;align-items:center;"><span style="color:var(--orange);">✓</span> Mobile money across Africa</div>
+            <div style="font-size:13px;display:flex;gap:8px;align-items:center;"><span style="color:var(--orange);">✓</span> Visa / Mastercard for international learners</div>
+            <div style="font-size:13px;display:flex;gap:8px;align-items:center;"><span style="color:var(--orange);">✓</span> Download & learn offline, anywhere</div>
+            <div style="font-size:13px;display:flex;gap:8px;align-items:center;"><span style="color:var(--orange);">✓</span> Courses in local context, globally relevant</div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,var(--teal),#0a5a5a);border-radius:16px;padding:28px;color:#fff;">
+          <div style="font-size:36px;margin-bottom:14px;">🎓</div>
+          <h3 style="font-size:18px;font-weight:800;margin-bottom:10px;">For Instructors Worldwide</h3>
+          <p style="font-size:14px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:16px;">Publish your expertise to a growing African audience — and beyond. LearnLoop handles payments, delivery, and community for you.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:13px;display:flex;gap:8px;align-items:center;"><span style="color:var(--orange);">✓</span> Teach from anywhere in the world</div>
+            <div style="font-size:13px;display:flex;gap:8px;align-items:center;"><span style="color:var(--orange);">✓</span> Get paid in your preferred currency</div>
+            <div style="font-size:13px;display:flex;gap:8px;align-items:center;"><span style="color:var(--orange);">✓</span> Reach 80+ countries of learners</div>
+            <div style="font-size:13px;display:flex;gap:8px;align-items:center;"><span style="color:var(--orange);">✓</span> Simple tools — upload, price, publish</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -457,8 +487,8 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
     <div class="feat-grid reveal">
       <div class="feat-item"><div class="feat-icon">📱</div><div class="feat-title">Mobile Money Checkout</div><div class="feat-desc">MTN MoMo, M-Pesa, Airtel Money, EcoCash & more. Pay in your local currency — no bank card needed.</div></div>
       <div class="feat-item"><div class="feat-icon">📥</div><div class="feat-title">Download & Learn Offline</div><div class="feat-desc">Download lessons before your commute. Learn when your data runs out. Sync when back online.</div></div>
-      <div class="feat-item"><div class="feat-icon">🏘️</div><div class="feat-title">Local Instructors</div><div class="feat-desc">Learn from experts who know your market, your challenges, and speak your context.</div></div>
-      <div class="feat-item"><div class="feat-icon">💰</div><div class="feat-title">Local Currency Pricing</div><div class="feat-desc">Prices shown in Naira, Cedis, Shillings, Rand & more. Affordable for every African budget.</div></div>
+      <div class="feat-item"><div class="feat-icon">🌐</div><div class="feat-title">Global Instructors Welcome</div><div class="feat-desc">Teach from Lagos, London, or anywhere. Reach learners across Africa and 80+ countries worldwide.</div></div>
+      <div class="feat-item"><div class="feat-icon">💰</div><div class="feat-title">Any Currency, Any Card</div><div class="feat-desc">Mobile money for African learners. Visa & Mastercard for international ones. No friction at checkout.</div></div>
     </div>
   </div>
 
@@ -516,7 +546,7 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
   <!-- CTA -->
   <div style="background:linear-gradient(135deg,var(--teal),#0a5a5a);padding:68px 24px;text-align:center;">
     <h2 style="font-size:32px;font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:-0.5px;">Ready to Start Learning?</h2>
-    <p style="color:rgba(255,255,255,.75);font-size:17px;max-width:480px;margin:0 auto 28px;line-height:1.6;">Join 18,500+ learners across 15 countries building real skills, in their own currency.</p>
+    <p style="color:rgba(255,255,255,.75);font-size:17px;max-width:480px;margin:0 auto 28px;line-height:1.6;">Join 18,500+ learners and 560+ instructors from across Africa and around the world.</p>
     <button class="btn btn-primary" onclick="go('signup')" style="font-size:16px;padding:14px 34px;">Create Free Account →</button>
   </div>
 </div>
@@ -526,7 +556,7 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
   <div class="browse-hero">
     <div class="container">
       <h2>Browse All Courses</h2>
-      <p style="color:rgba(255,255,255,.7);font-size:13px;margin-bottom:14px;"> 1,200+ courses · 560+ local instructors · 15 English-speaking African countries</p>
+      <p style="color:rgba(255,255,255,.7);font-size:13px;margin-bottom:14px;">1,200+ courses · 560+ expert instructors · learners in 80+ countries</p>
       <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Search courses, skills, instructors, or countries..." oninput="filterCourses()"/>
         <button onclick="filterCourses()">🔍 Search</button>
@@ -824,7 +854,7 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
 
 <!-- ══ SCREEN 7: DASHBOARD ══ -->
 <div id="screen-dashboard" class="screen">
-  <div class="dash-header"><div class="container"><h2 style="font-size:24px;font-weight:800;margin-bottom:4px;">👋 Welcome back, Zainab!</h2><p style="color:rgba(255,255,255,.7);">You're on a 7-day streak 🔥 Keep it up!</p></div></div>
+  <div class="dash-header"><div class="container"><h2 style="font-size:24px;font-weight:800;margin-bottom:4px;" id="dashGreeting">👋 Welcome back!</h2><p style="color:rgba(255,255,255,.7);">You're on a 7-day streak 🔥 Keep it up!</p></div></div>
   <div class="dash-wrap">
     <div class="dash-stats">
       <div class="stat-card" style="border-top:3px solid var(--teal);"><div class="s-icon">📚</div><div class="s-num">3</div><div class="s-lbl">Courses Enrolled</div></div>
@@ -977,7 +1007,7 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
         <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this)" onkeydown="otpBack(event,this)"/>
         <input class="otp-digit" type="text" maxlength="1" oninput="otpNext(this)" onkeydown="otpBack(event,this)"/>
       </div>
-      <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:13px;" onclick="showToastAndGo('dashboard','✅ Account verified! Welcome to LearnLoop 🎉')">Verify & Continue →</button>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:13px;" onclick="showToastAndGo('dashboard','✅ Account verified! Welcome to LearnLoop 🎉', pendingSignupName || 'Learner')">Verify & Continue →</button>
       <div style="margin-top:14px;font-size:13px;color:var(--gray);">Didn't get the code? <span style="color:var(--teal);font-weight:700;cursor:pointer;" onclick="showToast('📱 Code resent!')">Resend</span></div>
     </div>
   </div>
@@ -1040,6 +1070,44 @@ window.addEventListener('DOMContentLoaded', ()=>{
   animateCounters();
   startSlider();
   initReveal();
+});
+
+// ══ AUTH STATE ══
+let currentUser = null;
+
+function loginUser(name){
+  currentUser = { name };
+  const firstName = name.split(' ')[0];
+  const initials = name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('navAvatar').textContent = initials;
+  document.getElementById('navName').textContent = firstName;
+  document.getElementById('nav-auth-guest').style.display = 'none';
+  document.getElementById('nav-auth-user').style.display = 'flex';
+  const greeting = document.getElementById('dashGreeting');
+  if(greeting) greeting.textContent = `👋 Welcome back, ${firstName}!`;
+}
+
+function logoutUser(){
+  currentUser = null;
+  document.getElementById('nav-auth-guest').style.display = 'flex';
+  document.getElementById('nav-auth-user').style.display = 'none';
+  document.getElementById('userMenu').style.display = 'none';
+  go('landing');
+  showToast('You have been logged out.');
+}
+
+function toggleUserMenu(){
+  const m = document.getElementById('userMenu');
+  m.style.display = m.style.display === 'block' ? 'none' : 'block';
+}
+
+// Close user menu when clicking outside
+document.addEventListener('click', function(e){
+  const wrap = document.getElementById('userMenuWrap');
+  if(wrap && !wrap.contains(e.target)){
+    const m = document.getElementById('userMenu');
+    if(m) m.style.display = 'none';
+  }
 });
 
 // ══ NAVIGATION ══
@@ -1178,6 +1246,8 @@ function selectPM(el, type){
 }
 
 // ══ FORM VALIDATION ══
+let pendingSignupName = '';
+
 function validateSignup(){
   const name=document.getElementById('signupName')?.value.trim();
   const contact=document.getElementById('signupContact')?.value.trim();
@@ -1187,6 +1257,7 @@ function validateSignup(){
   if(!contact){showToast('⚠️ Please enter phone or email','#e53e3e');return;}
   if(!pass||pass.length<8){showToast('⚠️ Password must be at least 8 characters','#e53e3e');return;}
   if(countryCode) selectCountry(countryCode);
+  pendingSignupName = name;
   go('otp');
 }
 
@@ -1195,7 +1266,11 @@ function validateLogin(){
   const pass=document.getElementById('loginPass')?.value;
   if(!contact){showToast('⚠️ Please enter phone or email','#e53e3e');return;}
   if(!pass){showToast('⚠️ Please enter your password','#e53e3e');return;}
-  showToastAndGo('dashboard','👋 Welcome back, Zainab!');
+  // Use the contact as display name if it looks like a name, otherwise use first part of email
+  const displayName = contact.includes('@')
+    ? contact.split('@')[0].replace(/[._]/g,' ').replace(/\b\w/g,c=>c.toUpperCase())
+    : contact;
+  showToastAndGo('dashboard',`👋 Welcome back, ${displayName.split(' ')[0]}!`, displayName);
 }
 
 function processPayment(){
@@ -1316,8 +1391,10 @@ function showToast(msg, bg){
   if(t){t.textContent=msg;t.style.background=bg||'var(--green)';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
 }
 
-function showToastAndGo(screen,msg){
-  showToast(msg);go(screen);
+function showToastAndGo(screen,msg,userName){
+  showToast(msg);
+  if(userName) loginUser(userName);
+  go(screen);
 }
 
 // ══ OTP ══
