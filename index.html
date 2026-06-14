@@ -175,6 +175,9 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
 .badge-teal{background:var(--teal-light);color:var(--teal);}
 .badge-green{background:var(--green-light);color:var(--green);}
 .badge-navy{background:#E8EDF4;color:var(--navy);}
+.badge-lang{background:#f0f4ff;color:#3d5af1;border:1px solid #c7d2fe;}
+.currency-opt{padding:10px 16px;cursor:pointer;font-size:13px;color:var(--navy);}
+.currency-opt:hover{background:#f5f7fa;}
 
 /* ── COURSE DETAIL ── */
 .detail-hero{background:linear-gradient(135deg,var(--navy),#1a4a8a);padding:44px 24px;color:#fff;}
@@ -374,6 +377,25 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
     <a onclick="go('browse')">Browse</a>
     <a onclick="go('instructor')">Teach</a>
     <a onclick="go('dashboard')">My Learning</a>
+    <!-- Currency selector -->
+    <div style="position:relative;" id="currencyWrap">
+      <button onclick="toggleCurrencyMenu()" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 11px;border-radius:8px;cursor:pointer;font-size:13px;font-family:inherit;display:flex;align-items:center;gap:5px;" id="currencyBtn">
+        <span id="currencyFlag">🇳🇬</span><span id="currencyCode">NGN</span><span style="font-size:10px;opacity:.6;">▼</span>
+      </button>
+      <div id="currencyMenu" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--white);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18);min-width:200px;z-index:300;border:1px solid var(--border);overflow:hidden;">
+        <div style="padding:10px 14px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Select Currency</div>
+        <div class="currency-opt" onclick="setCurrency('NGN','🇳🇬','₦',1600)">🇳🇬 Nigerian Naira — NGN</div>
+        <div class="currency-opt" onclick="setCurrency('GHS','🇬🇭','GH₵',14.8)">🇬🇭 Ghanaian Cedi — GHS</div>
+        <div class="currency-opt" onclick="setCurrency('KES','🇰🇪','KSh',160)">🇰🇪 Kenyan Shilling — KES</div>
+        <div class="currency-opt" onclick="setCurrency('ZAR','🇿🇦','R',18.5)">🇿🇦 South African Rand — ZAR</div>
+        <div class="currency-opt" onclick="setCurrency('XOF','🇸🇳','CFA',615)">🌍 CFA Franc — XOF</div>
+        <div class="currency-opt" onclick="setCurrency('UGX','🇺🇬','USh',3800)">🇺🇬 Ugandan Shilling — UGX</div>
+        <div style="border-top:1px solid var(--border);"></div>
+        <div class="currency-opt" onclick="setCurrency('USD','🇺🇸','$',1)">🇺🇸 US Dollar — USD</div>
+        <div class="currency-opt" onclick="setCurrency('EUR','🇪🇺','€',0.92)">🇪🇺 Euro — EUR</div>
+        <div class="currency-opt" onclick="setCurrency('GBP','🇬🇧','£',0.79)">🇬🇧 British Pound — GBP</div>
+      </div>
+    </div>
     <div id="nav-auth-guest">
       <a onclick="go('login')" class="btn btn-secondary btn-sm">Log In</a>
       <a onclick="go('signup')" class="btn btn-primary btn-sm">Get Started</a>
@@ -404,7 +426,7 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
     <div class="hero-content">
       <div class="hero-badge">🌍 Africa-Rooted · Globally Open</div>
       <h1>Learn the Skills That <span>Pay,</span> From Teachers Who Get It.</h1>
-      <p>A skills marketplace built in Africa, open to learners and educators everywhere. Local context. Real instructors. Any currency.</p>
+      <p>A skills marketplace built in Africa, open to the world. Learn and teach in English, French, Swahili, Yoruba, and more. Pay and earn in your currency.</p>
       <div class="hero-actions">
         <button class="btn btn-primary" onclick="go('browse')">🚀 Explore Courses</button>
         <button class="btn btn-secondary" onclick="go('signup')">🎓 Start Teaching</button>
@@ -423,7 +445,8 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
   <div class="trust-strip">
     <div class="trust-inner">
       <span>✅ No credit card needed</span><div class="trust-divider"></div>
-      <span>📱 Mobile money & international cards</span><div class="trust-divider"></div>
+      <span>💱 8+ African & global currencies</span><div class="trust-divider"></div>
+      <span>🗣️ English, French, Swahili & more</span><div class="trust-divider"></div>
       <span>📥 Learn offline anywhere</span><div class="trust-divider"></div>
       <span>🏆 Certificates included</span><div class="trust-divider"></div>
       <span>🔒 30-day money-back guarantee</span>
@@ -452,7 +475,7 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
         <div style="background:linear-gradient(135deg,var(--teal),#0a5a5a);border-radius:16px;padding:28px;color:#fff;">
           <div style="font-size:36px;margin-bottom:14px;">🎓</div>
           <h3 style="font-size:18px;font-weight:800;margin-bottom:10px;">For Instructors Worldwide</h3>
-          <p style="font-size:14px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:16px;">Publish your expertise to a growing African audience — and beyond. LearnLoop handles payments, delivery, and community for you.</p>
+          <p style="font-size:14px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:16px;">Publish your expertise to a growing African audience — and beyond. Teach in English, French, Swahili, Yoruba, or any language you know best. LearnLoop handles payments, delivery, and community for you.</p>
           <div style="display:flex;flex-direction:column;gap:8px;">
             <div style="font-size:13px;display:flex;gap:8px;align-items:center;"><span style="color:var(--orange);">✓</span> Teach from anywhere in the world</div>
             <div style="font-size:13px;display:flex;gap:8px;align-items:center;"><span style="color:var(--orange);">✓</span> Get paid in your preferred currency</div>
@@ -483,12 +506,38 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
 
   <!-- Why LearnLoop -->
   <div class="features-strip">
-    <h2>Why LearnLoop Wins</h2>
-    <div class="feat-grid reveal">
-      <div class="feat-item"><div class="feat-icon">📱</div><div class="feat-title">Mobile Money Checkout</div><div class="feat-desc">MTN MoMo, M-Pesa, Airtel Money, EcoCash & more. Pay in your local currency — no bank card needed.</div></div>
-      <div class="feat-item"><div class="feat-icon">📥</div><div class="feat-title">Download & Learn Offline</div><div class="feat-desc">Download lessons before your commute. Learn when your data runs out. Sync when back online.</div></div>
-      <div class="feat-item"><div class="feat-icon">🌐</div><div class="feat-title">Global Instructors Welcome</div><div class="feat-desc">Teach from Lagos, London, or anywhere. Reach learners across Africa and 80+ countries worldwide.</div></div>
-      <div class="feat-item"><div class="feat-icon">💰</div><div class="feat-title">Any Currency, Any Card</div><div class="feat-desc">Mobile money for African learners. Visa & Mastercard for international ones. No friction at checkout.</div></div>
+    <h2>Why LearnLoop</h2>
+    <div class="feat-grid reveal" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));">
+      <div class="feat-item">
+        <div class="feat-icon">🎯</div>
+        <div class="feat-title">Contextual Learning</div>
+        <div class="feat-desc">Every course is built around real market scenarios — not generic templates imported from elsewhere. Content that speaks directly to your reality.</div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">🗣️</div>
+        <div class="feat-title">Multilingual Platform</div>
+        <div class="feat-desc">Learn and teach in English, French, Swahili, Yoruba, Hausa, Igbo, Amharic, Zulu, and more. Language should never be a barrier to education.</div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">💱</div>
+        <div class="feat-title">Your Currency, Your Terms</div>
+        <div class="feat-desc">Pay in Naira, Cedis, Shillings, CFA Francs, Rand, Dollars, or Euros. Instructors earn and withdraw in their preferred currency — no conversion surprises.</div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">📥</div>
+        <div class="feat-title">Offline-First Learning</div>
+        <div class="feat-desc">Download any lesson before your commute. Watch without internet. Progress saves locally and syncs the moment you reconnect — seamlessly.</div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">🌍</div>
+        <div class="feat-title">Africa-Rooted, Globally Open</div>
+        <div class="feat-desc">Designed for African learners and instructors, but open to everyone. Whether you're in Lagos or Lyon, LearnLoop works for you.</div>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">📱</div>
+        <div class="feat-title">Flexible Payments</div>
+        <div class="feat-desc">MTN MoMo, M-Pesa, Airtel Money, Paystack, Flutterwave, Visa, Mastercard, and bank transfer. Every learner can pay. Every instructor can earn.</div>
+      </div>
     </div>
   </div>
 
@@ -590,6 +639,15 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
       <label class="sf-option"><input type="checkbox"> 🇸🇱 Sierra Leone</label>
       <label class="sf-option"><input type="checkbox"> 🇱🇷 Liberia</label>
       <label class="sf-option"><input type="checkbox"> 🇬🇲 Gambia</label>
+      <div class="sf-title">Language</div>
+      <label class="sf-option"><input type="checkbox" checked> 🇬🇧 English</label>
+      <label class="sf-option"><input type="checkbox"> 🇫🇷 Français</label>
+      <label class="sf-option"><input type="checkbox"> 🌍 Swahili</label>
+      <label class="sf-option"><input type="checkbox"> 🌍 Yoruba</label>
+      <label class="sf-option"><input type="checkbox"> 🌍 Hausa</label>
+      <label class="sf-option"><input type="checkbox"> 🌍 Igbo</label>
+      <label class="sf-option"><input type="checkbox"> 🌍 Amharic</label>
+      <label class="sf-option"><input type="checkbox"> 🌍 Zulu</label>
       <div class="sf-title">Features</div>
       <label class="sf-option"><input type="checkbox" checked> 📥 Offline Available</label>
       <label class="sf-option"><input type="checkbox"> 📜 Certificate</label>
@@ -614,39 +672,39 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
         <!-- Cards with data-usd for currency switching -->
         <div class="card" onclick="go('detail')" data-cat="digital" data-title="social media marketing nigeria chidi okonkwo lagos">
           <div class="card-thumb"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Digital Marketing</div><div class="card-title">Social Media Marketing for Nigerian Small Businesses</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop" alt="">Chidi Okonkwo · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.9</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.20">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;"><span class="badge badge-orange">Bestseller</span><span class="badge badge-teal">📥</span></div></div>
+          <div class="card-body"><div class="card-cat">Digital Marketing</div><div class="card-title">Social Media Marketing for Nigerian Small Businesses</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop" alt="">Chidi Okonkwo · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.9</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.20">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-orange">Bestseller</span><span class="badge badge-teal">📥</span><span class="badge badge-lang">🇬🇧 English</span></div></div>
         </div>
         <div class="card" onclick="go('detail')" data-cat="tech" data-title="web development html css javascript ghana abena asante accra">
           <div class="card-thumb"><img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be66?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Tech Skills</div><div class="card-title">Web Development with HTML, CSS & JavaScript — Ghana Edition</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop" alt="">Abena Asante · 🇬🇭</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="8">—</span><span class="price" data-usd="4.00">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-green">New</span></div></div>
+          <div class="card-body"><div class="card-cat">Tech Skills</div><div class="card-title">Web Development with HTML, CSS & JavaScript — Ghana Edition</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop" alt="">Abena Asante · 🇬🇭</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="8">—</span><span class="price" data-usd="4.00">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-green">New</span><span class="badge badge-lang">🇬🇧 English</span></div></div>
         </div>
         <div class="card" onclick="go('detail')" data-cat="business" data-title="starting business kenya step by step grace wanjiku nairobi">
           <div class="card-thumb"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Business</div><div class="card-title">Starting a Business in Kenya — Step by Step</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=40&h=40&fit=crop" alt="">Grace Wanjiku · 🇰🇪</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="3">—</span><span class="price" data-usd="1.40">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-teal">📥 Offline</span></div></div>
+          <div class="card-body"><div class="card-cat">Business</div><div class="card-title">Starting a Business in Kenya — Step by Step</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=40&h=40&fit=crop" alt="">Grace Wanjiku · 🇰🇪</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="3">—</span><span class="price" data-usd="1.40">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-teal">📥 Offline</span><span class="badge badge-lang">🌍 Swahili</span></div></div>
         </div>
         <div class="card" onclick="go('detail')" data-cat="vocational" data-title="fashion tailoring business profit lagos fatima bello">
           <div class="card-thumb"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Vocational</div><div class="card-title">Fashion Business & Tailoring for Profit — Lagos Style</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=40&h=40&fit=crop" alt="">Fatima Bello · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★☆</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="4">—</span><span class="price" data-usd="1.55">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-orange">Hot 🔥</span></div></div>
+          <div class="card-body"><div class="card-cat">Vocational</div><div class="card-title">Fashion Business & Tailoring for Profit — Lagos Style</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=40&h=40&fit=crop" alt="">Fatima Bello · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★☆</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="4">—</span><span class="price" data-usd="1.55">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-orange">Hot 🔥</span><span class="badge badge-lang">🌍 Yoruba</span></div></div>
         </div>
         <div class="card" onclick="go('detail')" data-cat="finance" data-title="personal finance saving south africa rand thabo johannesburg">
           <div class="card-thumb"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Finance</div><div class="card-title">Personal Finance & Investing — South Africa Edition</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop" alt="">Thabo Dlamini · 🇿🇦</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="6">—</span><span class="price" data-usd="2.80">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-green">🇿🇦 SA Edition</span></div></div>
+          <div class="card-body"><div class="card-cat">Finance</div><div class="card-title">Personal Finance & Investing — South Africa Edition</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop" alt="">Thabo Dlamini · 🇿🇦</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="6">—</span><span class="price" data-usd="2.80">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-green">🇿🇦 SA Edition</span><span class="badge badge-lang">🌍 Zulu</span></div></div>
         </div>
         <div class="card" onclick="go('detail')" data-cat="photography" data-title="phone photography content creators lagos emeka nwosu">
           <div class="card-thumb"><img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Photography</div><div class="card-title">Phone Photography for Content Creators</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop" alt="">Emeka Nwosu · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.9</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.50">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-teal">📥 Offline</span></div></div>
+          <div class="card-body"><div class="card-cat">Photography</div><div class="card-title">Phone Photography for Content Creators</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop" alt="">Emeka Nwosu · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.9</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.50">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-teal">📥 Offline</span><span class="badge badge-lang">🇬🇧 English</span></div></div>
         </div>
         <div class="card" onclick="go('detail')" data-cat="tech" data-title="mobile money fintech uganda east africa kampala">
           <div class="card-thumb"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Tech Skills</div><div class="card-title">Mobile Money & Fintech Fundamentals — East Africa</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=40&h=40&fit=crop" alt="">James Okello · 🇺🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.00">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-navy">🇺🇬 Uganda</span></div></div>
+          <div class="card-body"><div class="card-cat">Tech Skills</div><div class="card-title">Mobile Money & Fintech Fundamentals — East Africa</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=40&h=40&fit=crop" alt="">James Okello · 🇺🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.00">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-navy">🇺🇬 Uganda</span><span class="badge badge-lang">🌍 Swahili</span></div></div>
         </div>
         <div class="card" onclick="go('detail')" data-cat="agriculture" data-title="agribusiness farming zambia africa kwacha rural">
           <div class="card-thumb"><img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Agriculture</div><div class="card-title">Modern Agribusiness & Smart Farming in Zambia</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop" alt="">Charity Mwale · 🇿🇲</div><div class="card-meta"><div><span class="stars">★★★★☆</span><span class="rating">4.6</span></div><div><span class="price-old" data-usd-old="4">—</span><span class="price" data-usd="1.80">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-green">🇿🇲 Zambia</span></div></div>
+          <div class="card-body"><div class="card-cat">Agriculture</div><div class="card-title">Modern Agribusiness & Smart Farming in Zambia</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop" alt="">Charity Mwale · 🇿🇲</div><div class="card-meta"><div><span class="stars">★★★★☆</span><span class="rating">4.6</span></div><div><span class="price-old" data-usd-old="4">—</span><span class="price" data-usd="1.80">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-green">🇿🇲 Zambia</span><span class="badge badge-lang">🇬🇧 English</span></div></div>
         </div>
         <div class="card" onclick="go('detail')" data-cat="digital" data-title="ecommerce online selling zimbabwe ecash digital">
           <div class="card-thumb"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Digital Marketing</div><div class="card-title">E-Commerce & Online Selling for Zimbabwe Entrepreneurs</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop" alt="">Tatenda Moyo · 🇿🇼</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.40">—</span></div></div><div style="margin-top:7px;"><span class="badge badge-navy">🇿🇼 Zimbabwe</span></div></div>
+          <div class="card-body"><div class="card-cat">Digital Marketing</div><div class="card-title">E-Commerce & Online Selling for Zimbabwe Entrepreneurs</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop" alt="">Tatenda Moyo · 🇿🇼</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.40">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-navy">🇿🇼 Zimbabwe</span><span class="badge badge-lang">🇬🇧 English</span></div></div>
         </div>
       </div>
       <div id="noResults" style="display:none;text-align:center;padding:48px;color:var(--gray);">
@@ -1108,7 +1166,42 @@ document.addEventListener('click', function(e){
     const m = document.getElementById('userMenu');
     if(m) m.style.display = 'none';
   }
+  const cWrap = document.getElementById('currencyWrap');
+  if(cWrap && !cWrap.contains(e.target)){
+    const cm = document.getElementById('currencyMenu');
+    if(cm) cm.style.display = 'none';
+  }
 });
+
+// ══ CURRENCY ══
+let activeCurrency = {code:'NGN', flag:'🇳🇬', symbol:'₦', rate:1600};
+
+function toggleCurrencyMenu(){
+  const m = document.getElementById('currencyMenu');
+  m.style.display = m.style.display === 'block' ? 'none' : 'block';
+}
+
+function setCurrency(code, flag, symbol, rate){
+  activeCurrency = {code, flag, symbol, rate};
+  document.getElementById('currencyFlag').textContent = flag;
+  document.getElementById('currencyCode').textContent = code;
+  document.getElementById('currencyMenu').style.display = 'none';
+  // Update all price elements
+  document.querySelectorAll('.price[data-usd]').forEach(el=>{
+    const usd = parseFloat(el.dataset.usd);
+    const val = (usd * rate).toLocaleString('en', {maximumFractionDigits: rate < 5 ? 2 : 0});
+    el.textContent = symbol + val;
+  });
+  document.querySelectorAll('.price-old[data-usd-old]').forEach(el=>{
+    const usd = parseFloat(el.dataset.usdOld);
+    const val = (usd * rate).toLocaleString('en', {maximumFractionDigits: rate < 5 ? 2 : 0});
+    el.textContent = symbol + val;
+  });
+  showToast(`Currency set to ${flag} ${code}`);
+}
+
+// Initialize prices on load
+document.addEventListener('DOMContentLoaded', ()=> setCurrency('NGN','🇳🇬','₦',1600));
 
 // ══ NAVIGATION ══
 function go(name){
