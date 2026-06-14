@@ -377,25 +377,6 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
     <a onclick="go('browse')">Browse</a>
     <a onclick="go('instructor')">Teach</a>
     <a onclick="go('dashboard')">My Learning</a>
-    <!-- Currency selector -->
-    <div style="position:relative;" id="currencyWrap">
-      <button onclick="toggleCurrencyMenu()" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:5px 11px;border-radius:8px;cursor:pointer;font-size:13px;font-family:inherit;display:flex;align-items:center;gap:5px;" id="currencyBtn">
-        <span id="currencyFlag">🇳🇬</span><span id="currencyCode">NGN</span><span style="font-size:10px;opacity:.6;">▼</span>
-      </button>
-      <div id="currencyMenu" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:var(--white);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18);min-width:200px;z-index:300;border:1px solid var(--border);overflow:hidden;">
-        <div style="padding:10px 14px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Select Currency</div>
-        <div class="currency-opt" onclick="setCurrency('NGN','🇳🇬','₦',1600)">🇳🇬 Nigerian Naira — NGN</div>
-        <div class="currency-opt" onclick="setCurrency('GHS','🇬🇭','GH₵',14.8)">🇬🇭 Ghanaian Cedi — GHS</div>
-        <div class="currency-opt" onclick="setCurrency('KES','🇰🇪','KSh',160)">🇰🇪 Kenyan Shilling — KES</div>
-        <div class="currency-opt" onclick="setCurrency('ZAR','🇿🇦','R',18.5)">🇿🇦 South African Rand — ZAR</div>
-        <div class="currency-opt" onclick="setCurrency('XOF','🇸🇳','CFA',615)">🌍 CFA Franc — XOF</div>
-        <div class="currency-opt" onclick="setCurrency('UGX','🇺🇬','USh',3800)">🇺🇬 Ugandan Shilling — UGX</div>
-        <div style="border-top:1px solid var(--border);"></div>
-        <div class="currency-opt" onclick="setCurrency('USD','🇺🇸','$',1)">🇺🇸 US Dollar — USD</div>
-        <div class="currency-opt" onclick="setCurrency('EUR','🇪🇺','€',0.92)">🇪🇺 Euro — EUR</div>
-        <div class="currency-opt" onclick="setCurrency('GBP','🇬🇧','£',0.79)">🇬🇧 British Pound — GBP</div>
-      </div>
-    </div>
     <div id="nav-auth-guest">
       <a onclick="go('login')" class="btn btn-secondary btn-sm">Log In</a>
       <a onclick="go('signup')" class="btn btn-primary btn-sm">Get Started</a>
@@ -663,6 +644,29 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
         <span class="filter-chip" onclick="setChip(this,'vocational')">🧵 Vocational</span>
         <span class="filter-chip" onclick="setChip(this,'photography')">📸 Photography</span>
         <span class="filter-chip" onclick="setChip(this,'agriculture')">🌾 Agriculture</span>
+      </div>
+      <!-- Currency selector -->
+      <div style="display:flex;align-items:center;gap:10px;background:#f0f4ff;border:1px solid #c7d2fe;border-radius:10px;padding:10px 14px;margin-bottom:16px;">
+        <span style="font-size:13px;font-weight:600;color:var(--navy);">💱 Pay in:</span>
+        <div style="position:relative;flex:1;" id="browseCurrencyWrap">
+          <button onclick="toggleCurrencyMenu()" style="background:#fff;border:1px solid var(--border);color:var(--navy);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:13px;font-family:inherit;display:flex;align-items:center;gap:6px;font-weight:600;">
+            <span id="browseCurrencyLabel">🇳🇬 NGN</span><span style="font-size:10px;color:var(--gray);">▼</span>
+          </button>
+          <div id="browseCurrencyMenu" style="display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--white);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.18);min-width:220px;z-index:300;border:1px solid var(--border);overflow:hidden;">
+            <div style="padding:8px 14px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);">Select your currency</div>
+            <div class="currency-opt" onclick="setCurrency('NGN','🇳🇬','₦',1600)">🇳🇬 Nigerian Naira — NGN</div>
+            <div class="currency-opt" onclick="setCurrency('GHS','🇬🇭','GH₵',14.8)">🇬🇭 Ghanaian Cedi — GHS</div>
+            <div class="currency-opt" onclick="setCurrency('KES','🇰🇪','KSh',160)">🇰🇪 Kenyan Shilling — KES</div>
+            <div class="currency-opt" onclick="setCurrency('ZAR','🇿🇦','R',18.5)">🇿🇦 South African Rand — ZAR</div>
+            <div class="currency-opt" onclick="setCurrency('XOF','🇸🇳','CFA',615)">🌍 CFA Franc — XOF</div>
+            <div class="currency-opt" onclick="setCurrency('UGX','🇺🇬','USh',3800)">🇺🇬 Ugandan Shilling — UGX</div>
+            <div style="border-top:1px solid var(--border);"></div>
+            <div class="currency-opt" onclick="setCurrency('USD','🇺🇸','$',1)">🇺🇸 US Dollar — USD</div>
+            <div class="currency-opt" onclick="setCurrency('EUR','🇪🇺','€',0.92)">🇪🇺 Euro — EUR</div>
+            <div class="currency-opt" onclick="setCurrency('GBP','🇬🇧','£',0.79)">🇬🇧 British Pound — GBP</div>
+          </div>
+        </div>
+        <span style="font-size:12px;color:var(--gray);">Your selected currency follows through to checkout</span>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
         <span style="font-size:14px;color:var(--gray);" id="resultCount">Showing <strong>9</strong> of 1,200 courses</span>
@@ -1166,9 +1170,9 @@ document.addEventListener('click', function(e){
     const m = document.getElementById('userMenu');
     if(m) m.style.display = 'none';
   }
-  const cWrap = document.getElementById('currencyWrap');
+  const cWrap = document.getElementById('browseCurrencyWrap');
   if(cWrap && !cWrap.contains(e.target)){
-    const cm = document.getElementById('currencyMenu');
+    const cm = document.getElementById('browseCurrencyMenu');
     if(cm) cm.style.display = 'none';
   }
 });
@@ -1177,31 +1181,27 @@ document.addEventListener('click', function(e){
 let activeCurrency = {code:'NGN', flag:'🇳🇬', symbol:'₦', rate:1600};
 
 function toggleCurrencyMenu(){
-  const m = document.getElementById('currencyMenu');
-  m.style.display = m.style.display === 'block' ? 'none' : 'block';
+  const m = document.getElementById('browseCurrencyMenu');
+  if(m) m.style.display = m.style.display === 'block' ? 'none' : 'block';
 }
 
 function setCurrency(code, flag, symbol, rate){
   activeCurrency = {code, flag, symbol, rate};
-  document.getElementById('currencyFlag').textContent = flag;
-  document.getElementById('currencyCode').textContent = code;
-  document.getElementById('currencyMenu').style.display = 'none';
-  // Update all price elements
-  document.querySelectorAll('.price[data-usd]').forEach(el=>{
-    const usd = parseFloat(el.dataset.usd);
-    const val = (usd * rate).toLocaleString('en', {maximumFractionDigits: rate < 5 ? 2 : 0});
-    el.textContent = symbol + val;
-  });
-  document.querySelectorAll('.price-old[data-usd-old]').forEach(el=>{
-    const usd = parseFloat(el.dataset.usdOld);
-    const val = (usd * rate).toLocaleString('en', {maximumFractionDigits: rate < 5 ? 2 : 0});
-    el.textContent = symbol + val;
-  });
+  // Update browse page selector label
+  const lbl = document.getElementById('browseCurrencyLabel');
+  if(lbl) lbl.textContent = flag + ' ' + code;
+  const m = document.getElementById('browseCurrencyMenu');
+  if(m) m.style.display = 'none';
+  // Update all card prices
+  updateAllPrices();
+  // Refresh detail sidebar and checkout if visible
+  updateDetailSidebar();
+  updateCheckout();
   showToast(`Currency set to ${flag} ${code}`);
 }
 
 // Initialize prices on load
-document.addEventListener('DOMContentLoaded', ()=> setCurrency('NGN','🇳🇬','₦',1600));
+document.addEventListener('DOMContentLoaded', ()=>{ updateAllPrices(); updateDetailSidebar(); updateCheckout(); });
 
 // ══ NAVIGATION ══
 function go(name){
@@ -1266,10 +1266,9 @@ function selectCountry(code){
 
 // ══ CURRENCY ══
 function fmt(usd){
-  const c = COUNTRIES[selectedCountry];
-  const val = usd * c.rate;
-  if(val >= 1000) return c.symbol + Math.round(val).toLocaleString();
-  return c.symbol + val.toFixed(val<10?2:0);
+  const val = usd * activeCurrency.rate;
+  if(val >= 1000) return activeCurrency.symbol + Math.round(val).toLocaleString();
+  return activeCurrency.symbol + val.toFixed(val<10?2:0);
 }
 
 function updateAllPrices(){
