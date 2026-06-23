@@ -605,34 +605,29 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
       <label class="sf-option"><input type="checkbox"> Agriculture</label>
       <label class="sf-option"><input type="checkbox"> Design</label>
       <div class="sf-title">Country</div>
-      <label class="sf-option"><input type="checkbox" checked> 🇳🇬 Nigeria</label>
-      <label class="sf-option"><input type="checkbox" checked> 🇬🇭 Ghana</label>
-      <label class="sf-option"><input type="checkbox" checked> 🇰🇪 Kenya</label>
-      <label class="sf-option"><input type="checkbox"> 🇿🇦 South Africa</label>
-      <label class="sf-option"><input type="checkbox"> 🇺🇬 Uganda</label>
-      <label class="sf-option"><input type="checkbox"> 🇹🇿 Tanzania</label>
-      <label class="sf-option"><input type="checkbox"> 🇷🇼 Rwanda</label>
-      <label class="sf-option"><input type="checkbox"> 🇿🇲 Zambia</label>
-      <label class="sf-option"><input type="checkbox"> 🇿🇼 Zimbabwe</label>
-      <label class="sf-option"><input type="checkbox"> 🇧🇼 Botswana</label>
-      <label class="sf-option"><input type="checkbox"> 🇳🇦 Namibia</label>
-      <label class="sf-option"><input type="checkbox"> 🇲🇼 Malawi</label>
-      <label class="sf-option"><input type="checkbox"> 🇸🇱 Sierra Leone</label>
-      <label class="sf-option"><input type="checkbox"> 🇱🇷 Liberia</label>
-      <label class="sf-option"><input type="checkbox"> 🇬🇲 Gambia</label>
+      <label class="sf-option"><input type="checkbox" class="sf-country" value="Nigeria" onchange="renderCourseGrid()"> 🇳🇬 Nigeria</label>
+      <label class="sf-option"><input type="checkbox" class="sf-country" value="Ghana" onchange="renderCourseGrid()"> 🇬🇭 Ghana</label>
+      <label class="sf-option"><input type="checkbox" class="sf-country" value="Kenya" onchange="renderCourseGrid()"> 🇰🇪 Kenya</label>
+      <label class="sf-option"><input type="checkbox" class="sf-country" value="South Africa" onchange="renderCourseGrid()"> 🇿🇦 South Africa</label>
+      <label class="sf-option"><input type="checkbox" class="sf-country" value="Uganda" onchange="renderCourseGrid()"> 🇺🇬 Uganda</label>
+      <label class="sf-option"><input type="checkbox" class="sf-country" value="Tanzania" onchange="renderCourseGrid()"> 🇹🇿 Tanzania</label>
+      <label class="sf-option"><input type="checkbox" class="sf-country" value="Zambia" onchange="renderCourseGrid()"> 🇿🇲 Zambia</label>
+      <label class="sf-option"><input type="checkbox" class="sf-country" value="Zimbabwe" onchange="renderCourseGrid()"> 🇿🇼 Zimbabwe</label>
+      <label class="sf-option"><input type="checkbox" class="sf-country" value="Senegal" onchange="renderCourseGrid()"> 🇸🇳 Senegal</label>
+      <label class="sf-option"><input type="checkbox" class="sf-country" value="Côte d'Ivoire" onchange="renderCourseGrid()"> 🇨🇮 Côte d'Ivoire</label>
+      <label class="sf-option"><input type="checkbox" class="sf-country" value="Global" onchange="renderCourseGrid()"> 🌍 Global / Open</label>
       <div class="sf-title">Language</div>
-      <label class="sf-option"><input type="checkbox" checked> 🇬🇧 English</label>
-      <label class="sf-option"><input type="checkbox"> 🇫🇷 Français</label>
-      <label class="sf-option"><input type="checkbox"> 🌍 Swahili</label>
-      <label class="sf-option"><input type="checkbox"> 🌍 Yoruba</label>
-      <label class="sf-option"><input type="checkbox"> 🌍 Hausa</label>
-      <label class="sf-option"><input type="checkbox"> 🌍 Igbo</label>
-      <label class="sf-option"><input type="checkbox"> 🌍 Amharic</label>
-      <label class="sf-option"><input type="checkbox"> 🌍 Zulu</label>
+      <label class="sf-option"><input type="checkbox" class="sf-lang" value="English" onchange="renderCourseGrid()"> 🇬🇧 English</label>
+      <label class="sf-option"><input type="checkbox" class="sf-lang" value="Français" onchange="renderCourseGrid()"> 🇫🇷 Français</label>
+      <label class="sf-option"><input type="checkbox" class="sf-lang" value="Swahili" onchange="renderCourseGrid()"> 🌍 Swahili</label>
+      <label class="sf-option"><input type="checkbox" class="sf-lang" value="Yoruba" onchange="renderCourseGrid()"> 🌍 Yoruba</label>
+      <label class="sf-option"><input type="checkbox" class="sf-lang" value="Hausa" onchange="renderCourseGrid()"> 🌍 Hausa</label>
+      <label class="sf-option"><input type="checkbox" class="sf-lang" value="Igbo" onchange="renderCourseGrid()"> 🌍 Igbo</label>
+      <label class="sf-option"><input type="checkbox" class="sf-lang" value="Zulu" onchange="renderCourseGrid()"> 🌍 Zulu</label>
       <div class="sf-title">Features</div>
-      <label class="sf-option"><input type="checkbox" checked> 📥 Offline Available</label>
-      <label class="sf-option"><input type="checkbox"> 📜 Certificate</label>
-      <label class="sf-option"><input type="checkbox"> 🆓 Free Preview</label>
+      <label class="sf-option"><input type="checkbox" class="sf-feat" value="offline" onchange="renderCourseGrid()"> 📥 Offline Available</label>
+      <label class="sf-option"><input type="checkbox" class="sf-feat" value="cert" onchange="renderCourseGrid()"> 📜 Certificate</label>
+      <label class="sf-option"><input type="checkbox" class="sf-feat" value="free" onchange="renderCourseGrid()"> 🆓 Free Courses</label>
     </div>
     <div>
       <div class="filter-bar">
@@ -672,45 +667,7 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
         <span style="font-size:14px;color:var(--gray);" id="resultCount">Showing <strong>9</strong> of 1,200 courses</span>
         <select class="form-select" style="width:auto;padding:7px 12px;font-size:13px;"><option>Most Popular</option><option>Newest First</option><option>Price: Low to High</option><option>Highest Rated</option></select>
       </div>
-      <div class="grid-3" id="courseGrid">
-        <!-- Cards with data-usd for currency switching -->
-        <div class="card" onclick="go('detail')" data-cat="digital" data-title="social media marketing nigeria chidi okonkwo lagos">
-          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Digital Marketing</div><div class="card-title">Social Media Marketing for Nigerian Small Businesses</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop" alt="">Chidi Okonkwo · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.9</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.20">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-orange">Bestseller</span><span class="badge badge-teal">📥</span><span class="badge badge-lang">🇬🇧 English</span></div></div>
-        </div>
-        <div class="card" onclick="go('detail')" data-cat="tech" data-title="web development html css javascript ghana abena asante accra">
-          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1516321165247-4aa89a48be66?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Tech Skills</div><div class="card-title">Web Development with HTML, CSS & JavaScript — Ghana Edition</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop" alt="">Abena Asante · 🇬🇭</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="8">—</span><span class="price" data-usd="4.00">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-green">New</span><span class="badge badge-lang">🇬🇧 English</span></div></div>
-        </div>
-        <div class="card" onclick="go('detail')" data-cat="business" data-title="starting business kenya step by step grace wanjiku nairobi">
-          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Business</div><div class="card-title">Starting a Business in Kenya — Step by Step</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=40&h=40&fit=crop" alt="">Grace Wanjiku · 🇰🇪</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="3">—</span><span class="price" data-usd="1.40">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-teal">📥 Offline</span><span class="badge badge-lang">🌍 Swahili</span></div></div>
-        </div>
-        <div class="card" onclick="go('detail')" data-cat="vocational" data-title="fashion tailoring business profit lagos fatima bello">
-          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Vocational</div><div class="card-title">Fashion Business & Tailoring for Profit — Lagos Style</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=40&h=40&fit=crop" alt="">Fatima Bello · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★☆</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="4">—</span><span class="price" data-usd="1.55">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-orange">Hot 🔥</span><span class="badge badge-lang">🌍 Yoruba</span></div></div>
-        </div>
-        <div class="card" onclick="go('detail')" data-cat="finance" data-title="personal finance saving south africa rand thabo johannesburg">
-          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Finance</div><div class="card-title">Personal Finance & Investing — South Africa Edition</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop" alt="">Thabo Dlamini · 🇿🇦</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="6">—</span><span class="price" data-usd="2.80">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-green">🇿🇦 SA Edition</span><span class="badge badge-lang">🌍 Zulu</span></div></div>
-        </div>
-        <div class="card" onclick="go('detail')" data-cat="photography" data-title="phone photography content creators lagos emeka nwosu">
-          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Photography</div><div class="card-title">Phone Photography for Content Creators</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop" alt="">Emeka Nwosu · 🇳🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.9</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.50">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-teal">📥 Offline</span><span class="badge badge-lang">🇬🇧 English</span></div></div>
-        </div>
-        <div class="card" onclick="go('detail')" data-cat="tech" data-title="mobile money fintech uganda east africa kampala">
-          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Tech Skills</div><div class="card-title">Mobile Money & Fintech Fundamentals — East Africa</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=40&h=40&fit=crop" alt="">James Okello · 🇺🇬</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.8</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.00">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-navy">🇺🇬 Uganda</span><span class="badge badge-lang">🌍 Swahili</span></div></div>
-        </div>
-        <div class="card" onclick="go('detail')" data-cat="agriculture" data-title="agribusiness farming zambia africa kwacha rural">
-          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Agriculture</div><div class="card-title">Modern Agribusiness & Smart Farming in Zambia</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop" alt="">Charity Mwale · 🇿🇲</div><div class="card-meta"><div><span class="stars">★★★★☆</span><span class="rating">4.6</span></div><div><span class="price-old" data-usd-old="4">—</span><span class="price" data-usd="1.80">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-green">🇿🇲 Zambia</span><span class="badge badge-lang">🇬🇧 English</span></div></div>
-        </div>
-        <div class="card" onclick="go('detail')" data-cat="digital" data-title="ecommerce online selling zimbabwe ecash digital">
-          <div class="card-thumb"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=380&fit=crop&q=80" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
-          <div class="card-body"><div class="card-cat">Digital Marketing</div><div class="card-title">E-Commerce & Online Selling for Zimbabwe Entrepreneurs</div><div class="card-instructor"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop" alt="">Tatenda Moyo · 🇿🇼</div><div class="card-meta"><div><span class="stars">★★★★★</span><span class="rating">4.7</span></div><div><span class="price-old" data-usd-old="5">—</span><span class="price" data-usd="2.40">—</span></div></div><div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;"><span class="badge badge-navy">🇿🇼 Zimbabwe</span><span class="badge badge-lang">🇬🇧 English</span></div></div>
-        </div>
-      </div>
+      <div class="grid-3" id="courseGrid"></div>
       <div id="noResults" style="display:none;text-align:center;padding:48px;color:var(--gray);">
         <div style="font-size:48px;margin-bottom:12px;">🔍</div>
         <h3 style="font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px;">No courses found</h3>
@@ -1000,8 +957,7 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
         </div>
         <div style="background:var(--white);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><h3 style="font-size:15px;font-weight:800;color:var(--navy);">My Courses</h3><button class="btn btn-teal btn-sm" onclick="go('create')">+ New</button></div>
-          <div class="course-row"><div class="cr-thumb"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=120&h=88&fit=crop" alt=""></div><div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--navy);">Social Media Marketing for Nigerian Small Businesses</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Published · 32 lessons</div><div style="margin-top:4px;"><span class="badge badge-orange">Bestseller</span></div></div><div style="text-align:right;flex-shrink:0;"><div style="font-size:14px;font-weight:800;color:var(--teal);">₦128,400</div><div style="font-size:11px;color:var(--gray);">876 students</div><div style="color:var(--orange);font-size:11px;">★ 4.9</div></div></div>
-          <div class="course-row"><div class="cr-thumb"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=120&h=88&fit=crop" alt=""></div><div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--navy);">WhatsApp Business for Entrepreneurs</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Published · 18 lessons</div><div style="margin-top:4px;"><span class="badge badge-teal">Active</span></div></div><div style="text-align:right;flex-shrink:0;"><div style="font-size:14px;font-weight:800;color:var(--teal);">₦54,000</div><div style="font-size:11px;color:var(--gray);">371 students</div><div style="color:var(--orange);font-size:11px;">★ 4.8</div></div></div>
+          <div id="instructorCourseList"></div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:14px;">
@@ -1017,7 +973,7 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
   <div style="max-width:700px;margin:0 auto;padding:36px 24px;">
     <div style="margin-bottom:20px;"><span onclick="go('instructor')" style="cursor:pointer;color:var(--navy);font-size:14px;font-weight:600;">← Back to Dashboard</span></div>
     <h2 style="font-size:24px;font-weight:800;color:var(--navy);margin-bottom:4px;">Create a New Course</h2>
-    <p style="color:var(--gray);font-size:14px;margin-bottom:28px;">Fill in the basics. Reach learners across 15 English-speaking African countries.</p>
+    <p style="color:var(--gray);font-size:14px;margin-bottom:28px;">Fill in the details. Your course will be live and visible on the marketplace once published.</p>
     <div style="display:flex;background:var(--gray-light);border-radius:10px;padding:4px;margin-bottom:28px;">
       <div style="flex:1;text-align:center;background:var(--navy);border-radius:8px;padding:9px 4px;"><div style="font-size:12px;font-weight:700;color:#fff;">1. Basics</div></div>
       <div style="flex:1;text-align:center;padding:9px 4px;"><div style="font-size:12px;color:var(--gray);">2. Curriculum</div></div>
@@ -1025,13 +981,52 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
       <div style="flex:1;text-align:center;padding:9px 4px;"><div style="font-size:12px;color:var(--gray);">4. Publish</div></div>
     </div>
     <div style="background:var(--white);border-radius:16px;padding:26px;box-shadow:var(--shadow);">
-      <div class="form-group"><label class="form-label">Course Title *</label><input class="form-input" type="text" placeholder="e.g. Instagram Marketing for Lagos Small Businesses"/></div>
-      <div class="form-group"><label class="form-label">Course Category *</label><select class="form-select"><option>Select a category...</option><option>Digital Marketing</option><option>Tech Skills</option><option>Vocational / Trades</option><option>Finance & Money</option><option>Photography & Video</option><option>Business & Entrepreneurship</option><option>Agriculture</option><option>Design</option></select></div>
-      <div class="form-group"><label class="form-label">Target Country *</label><select class="form-select"><option>Nigeria 🇳🇬</option><option>Ghana 🇬🇭</option><option>Kenya 🇰🇪</option><option>South Africa 🇿🇦</option><option>Uganda 🇺🇬</option><option>Tanzania 🇹🇿</option><option>Rwanda 🇷🇼</option><option>Zambia 🇿🇲</option><option>Zimbabwe 🇿🇼</option><option>Botswana 🇧🇼</option><option>Namibia 🇳🇦</option><option>Malawi 🇲🇼</option><option>Sierra Leone 🇸🇱</option><option>Liberia 🇱🇷</option><option>Gambia 🇬🇲</option><option>Pan-Africa (All Countries)</option></select></div>
-      <div class="form-group"><label class="form-label">Course Price (in your local currency) *</label><input class="form-input" type="text" placeholder="e.g. ₦3,500 or KSh 500 or R 250"/></div>
-      <div class="form-group"><label class="form-label">Short Description *</label><textarea class="form-input" rows="3" placeholder="What will students learn? What problem does this course solve?"></textarea></div>
+      <div class="form-group"><label class="form-label">Course Title *</label><input class="form-input" type="text" id="newCourseTitle" placeholder="e.g. Instagram Marketing for Lagos Small Businesses"/></div>
+      <div class="form-group"><label class="form-label">Course Category *</label><select class="form-select" id="newCourseCat"><option value="">Select a category...</option><option value="digital">Digital Marketing</option><option value="tech">Tech Skills</option><option value="vocational">Vocational / Trades</option><option value="finance">Finance & Money</option><option value="photography">Photography & Video</option><option value="business">Business & Entrepreneurship</option><option value="agriculture">Agriculture</option><option value="design">Design</option></select></div>
+      <div class="form-group"><label class="form-label">Course Language *</label><select class="form-select" id="newCourseLang"><option value="English">🇬🇧 English</option><option value="Français">🇫🇷 Français</option><option value="Swahili">🌍 Swahili</option><option value="Yoruba">🌍 Yoruba</option><option value="Hausa">🌍 Hausa</option><option value="Igbo">🌍 Igbo</option><option value="Amharic">🌍 Amharic</option><option value="Zulu">🌍 Zulu</option></select></div>
+      <div class="form-group">
+        <label class="form-label">Target Audience *</label>
+        <select class="form-select" id="newCourseCountry">
+          <option value="global">🌍 Open to Everyone (Global)</option>
+          <option value="Nigeria 🇳🇬">Nigeria 🇳🇬</option>
+          <option value="Ghana 🇬🇭">Ghana 🇬🇭</option>
+          <option value="Kenya 🇰🇪">Kenya 🇰🇪</option>
+          <option value="South Africa 🇿🇦">South Africa 🇿🇦</option>
+          <option value="Uganda 🇺🇬">Uganda 🇺🇬</option>
+          <option value="Tanzania 🇹🇿">Tanzania 🇹🇿</option>
+          <option value="Rwanda 🇷🇼">Rwanda 🇷🇼</option>
+          <option value="Zambia 🇿🇲">Zambia 🇿🇲</option>
+          <option value="Zimbabwe 🇿🇼">Zimbabwe 🇿🇼</option>
+          <option value="Botswana 🇧🇼">Botswana 🇧🇼</option>
+          <option value="Senegal 🇸🇳">Senegal 🇸🇳</option>
+          <option value="Côte d'Ivoire 🇨🇮">Côte d'Ivoire 🇨🇮</option>
+          <option value="Ethiopia 🇪🇹">Ethiopia 🇪🇹</option>
+        </select>
+        <div style="font-size:12px;color:var(--gray);margin-top:5px;">💡 Choose a specific country to make your course more locally relevant, or leave as Global to reach everyone.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Price Currency *</label>
+          <select class="form-select" id="newCourseCurrency">
+            <option value="NGN|₦|1600">Nigerian Naira (₦ NGN)</option>
+            <option value="GHS|GH₵|14.8">Ghanaian Cedi (GH₵ GHS)</option>
+            <option value="KES|KSh|160">Kenyan Shilling (KSh KES)</option>
+            <option value="ZAR|R|18.5">South African Rand (R ZAR)</option>
+            <option value="XOF|CFA|615">CFA Franc (CFA XOF)</option>
+            <option value="UGX|USh|3800">Ugandan Shilling (USh UGX)</option>
+            <option value="USD|$|1">US Dollar ($ USD)</option>
+            <option value="EUR|€|0.92">Euro (€ EUR)</option>
+            <option value="GBP|£|0.79">British Pound (£ GBP)</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label">Course Price *</label>
+          <input class="form-input" type="number" id="newCoursePrice" placeholder="e.g. 3500" min="0"/>
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:16px;"><label class="form-label">Short Description *</label><textarea class="form-input" rows="3" id="newCourseDesc" placeholder="What will students learn? What problem does this course solve?"></textarea></div>
       <div class="form-group"><label class="form-label">Course Thumbnail</label><div style="border:2px dashed var(--border);border-radius:10px;padding:32px;text-align:center;cursor:pointer;background:var(--gray-light);transition:.2s;" onmouseover="this.style.borderColor='var(--teal)'" onmouseout="this.style.borderColor='var(--border)'"><div style="font-size:32px;margin-bottom:8px;">📸</div><div style="font-size:14px;font-weight:600;color:var(--navy);">Click to upload thumbnail</div><div style="font-size:12px;color:var(--gray);margin-top:3px;">JPG or PNG · Max 5MB · 1280×720px</div></div></div>
-      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:6px;"><button class="btn btn-outline">Save as Draft</button><button class="btn btn-primary" onclick="showToastAndGo('instructor','✅ Course basics saved! Proceeding to curriculum...')">Continue to Curriculum →</button></div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:6px;"><button class="btn btn-outline" onclick="go('instructor')">Cancel</button><button class="btn btn-primary" onclick="publishCourse()">Publish Course →</button></div>
     </div>
   </div>
 </div>
@@ -1042,12 +1037,11 @@ nav{background:var(--navy);padding:0 20px;display:flex;align-items:center;justif
     <div class="auth-card">
       <div style="text-align:center;font-size:38px;margin-bottom:6px;">🎓</div>
       <h2 style="text-align:center;">Create Your Account</h2>
-      <p style="text-align:center;">Join 18,500+ learners across 15 African countries</p>
+      <p style="text-align:center;">Join 18,500+ learners and instructors worldwide</p>
       <div class="auth-toggle"><div class="at-btn active">I'm a Learner</div><div class="at-btn">I'm an Instructor</div></div>
       <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" type="text" id="signupName" placeholder="e.g. Zainab Badu"/></div>
       <div class="form-group"><label class="form-label">Phone Number or Email</label><input class="form-input" type="text" id="signupContact" placeholder="e.g. 08012345678 or zainab@email.com"/></div>
       <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" id="signupPass" placeholder="At least 8 characters"/></div>
-      <div class="form-group"><label class="form-label">Country</label><select class="form-select" id="signupCountry"><option value="ng">Nigeria 🇳🇬</option><option value="gh">Ghana 🇬🇭</option><option value="ke">Kenya 🇰🇪</option><option value="za">South Africa 🇿🇦</option><option value="ug">Uganda 🇺🇬</option><option value="tz">Tanzania 🇹🇿</option><option value="rw">Rwanda 🇷🇼</option><option value="zm">Zambia 🇿🇲</option><option value="zw">Zimbabwe 🇿🇼</option><option value="bw">Botswana 🇧🇼</option><option value="na">Namibia 🇳🇦</option><option value="mw">Malawi 🇲🇼</option><option value="sl">Sierra Leone 🇸🇱</option><option value="lr">Liberia 🇱🇷</option><option value="gm">Gambia 🇬🇲</option></select></div>
       <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:15px;padding:13px;margin-bottom:12px;" onclick="validateSignup()">Create Account →</button>
       <div class="divider">or sign up with</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;"><button class="btn btn-outline" style="justify-content:center;">🌐 Google</button><button class="btn btn-outline" style="justify-content:center;">📘 Facebook</button></div>
@@ -1212,6 +1206,8 @@ function go(name){
   if(name==='dashboard'){setTimeout(animateProgressBars,300);}
   if(name==='checkout'){updateCheckout();}
   if(name==='detail'){updateDetailSidebar();}
+  if(name==='browse'){renderCourseGrid();}
+  if(name==='instructor'){renderInstructorCourses();}
 }
 
 // ══ COUNTRY PICKER ══
@@ -1344,11 +1340,9 @@ function validateSignup(){
   const name=document.getElementById('signupName')?.value.trim();
   const contact=document.getElementById('signupContact')?.value.trim();
   const pass=document.getElementById('signupPass')?.value;
-  const countryCode=document.getElementById('signupCountry')?.value;
   if(!name){showToast('⚠️ Please enter your full name','#e53e3e');return;}
   if(!contact){showToast('⚠️ Please enter phone or email','#e53e3e');return;}
   if(!pass||pass.length<8){showToast('⚠️ Password must be at least 8 characters','#e53e3e');return;}
-  if(countryCode) selectCountry(countryCode);
   pendingSignupName = name;
   go('otp');
 }
@@ -1399,39 +1393,189 @@ function processPayment(){
   }
 }
 
-// ══ SEARCH & FILTER ══
-function filterCourses(){
-  const q=(document.getElementById('searchInput')?.value||'').toLowerCase();
-  const cards=document.querySelectorAll('#courseGrid .card');
-  let visible=0;
-  cards.forEach(card=>{
-    const title=(card.dataset.title||'').toLowerCase();
-    const cat=(card.dataset.cat||'');
-    const matchQ=!q||title.includes(q);
-    const matchCat=activeChip==='all'||cat===activeChip;
-    const show=matchQ&&matchCat;
-    card.style.display=show?'':'none';
-    if(show)visible++;
-  });
-  const rc=document.getElementById('resultCount');
-  if(rc)rc.innerHTML=`Showing <strong>${visible}</strong> of 1,200 courses`;
-  const nr=document.getElementById('noResults');
-  if(nr)nr.style.display=visible===0?'block':'none';
+// ══ COURSES DATA ══
+let courses = [
+  {id:1,cat:'digital',title:'Social Media Marketing for Nigerian Small Businesses',instructor:'Chidi Okonkwo',flag:'🇳🇬',country:'Nigeria',lang:'English',usd:2.20,usdOld:5,rating:4.9,offline:true,certificate:true,badge:'Bestseller',badgeCls:'badge-orange',img:'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop',myOwn:false},
+  {id:2,cat:'tech',title:'Web Development with HTML, CSS & JavaScript — Ghana Edition',instructor:'Abena Asante',flag:'🇬🇭',country:'Ghana',lang:'English',usd:4.00,usdOld:8,rating:4.8,offline:false,certificate:true,badge:'New',badgeCls:'badge-green',img:'https://images.unsplash.com/photo-1516321165247-4aa89a48be66?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop',myOwn:false},
+  {id:3,cat:'business',title:'Starting a Business in Kenya — Step by Step',instructor:'Grace Wanjiku',flag:'🇰🇪',country:'Kenya',lang:'Swahili',usd:1.40,usdOld:3,rating:4.8,offline:true,certificate:true,badge:'',badgeCls:'',img:'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=40&h=40&fit=crop',myOwn:false},
+  {id:4,cat:'vocational',title:'Fashion Business & Tailoring for Profit — Lagos Style',instructor:'Fatima Bello',flag:'🇳🇬',country:'Nigeria',lang:'Yoruba',usd:1.55,usdOld:4,rating:4.7,offline:false,certificate:false,badge:'Hot 🔥',badgeCls:'badge-orange',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=40&h=40&fit=crop',myOwn:false},
+  {id:5,cat:'finance',title:'Personal Finance & Investing — South Africa Edition',instructor:'Thabo Dlamini',flag:'🇿🇦',country:'South Africa',lang:'Zulu',usd:2.80,usdOld:6,rating:4.7,offline:false,certificate:true,badge:'SA Edition',badgeCls:'badge-green',img:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop',myOwn:false},
+  {id:6,cat:'photography',title:'Phone Photography for Content Creators',instructor:'Emeka Nwosu',flag:'🇳🇬',country:'Nigeria',lang:'English',usd:2.50,usdOld:5,rating:4.9,offline:true,certificate:false,badge:'',badgeCls:'',img:'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop',myOwn:false},
+  {id:7,cat:'tech',title:'Mobile Money & Fintech Fundamentals — East Africa',instructor:'James Okello',flag:'🇺🇬',country:'Uganda',lang:'Swahili',usd:2.00,usdOld:5,rating:4.8,offline:false,certificate:true,badge:'Uganda',badgeCls:'badge-navy',img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=40&h=40&fit=crop',myOwn:false},
+  {id:8,cat:'agriculture',title:'Modern Agribusiness & Smart Farming in Zambia',instructor:'Charity Mwale',flag:'🇿🇲',country:'Zambia',lang:'English',usd:1.80,usdOld:4,rating:4.6,offline:false,certificate:false,badge:'Zambia',badgeCls:'badge-green',img:'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop',myOwn:false},
+  {id:9,cat:'digital',title:'E-Commerce & Online Selling for Zimbabwe Entrepreneurs',instructor:'Tatenda Moyo',flag:'🇿🇼',country:'Zimbabwe',lang:'English',usd:2.40,usdOld:5,rating:4.7,offline:false,certificate:true,badge:'Zimbabwe',badgeCls:'badge-navy',img:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop',myOwn:false},
+  // Extra courses for filter coverage
+  {id:10,cat:'tech',title:'Python Programming for Data Science — Nairobi Cohort',instructor:'Brian Otieno',flag:'🇰🇪',country:'Kenya',lang:'English',usd:5.00,usdOld:10,rating:4.8,offline:true,certificate:true,badge:'Offline',badgeCls:'badge-teal',img:'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=40&h=40&fit=crop',myOwn:false},
+  {id:11,cat:'finance',title:'Crypto & Digital Assets for Africans',instructor:'Kwame Asante',flag:'🇬🇭',country:'Ghana',lang:'English',usd:3.50,usdOld:7,rating:4.5,offline:false,certificate:true,badge:'Hot 🔥',badgeCls:'badge-orange',img:'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop',myOwn:false},
+  {id:12,cat:'digital',title:'Marketing Digital pour les Entrepreneurs Sénégalais',instructor:'Aminata Diallo',flag:'🇸🇳',country:'Senegal',lang:'Français',usd:2.00,usdOld:4,rating:4.6,offline:false,certificate:true,badge:'Français',badgeCls:'badge-lang',img:'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop',myOwn:false},
+  {id:13,cat:'business',title:"Entrepreneuriat & Business Plan en Côte d'Ivoire",instructor:'Kouassi Brou',flag:'🇨🇮',country:"Côte d'Ivoire",lang:'Français',usd:1.80,usdOld:3.5,rating:4.7,offline:true,certificate:true,badge:'CFA',badgeCls:'badge-navy',img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop',myOwn:false},
+  {id:14,cat:'vocational',title:'Plomberie & Electricité Résidentielle — Guide Pratique',instructor:'Moussa Traoré',flag:'🇸🇳',country:'Senegal',lang:'Français',usd:1.50,usdOld:3,rating:4.4,offline:true,certificate:false,badge:'Offline',badgeCls:'badge-teal',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=40&h=40&fit=crop',myOwn:false},
+  {id:15,cat:'agriculture',title:'Kilimo Bora & Biashara ya Kilimo — Tanzania',instructor:'Amina Kimaro',flag:'🇹🇿',country:'Tanzania',lang:'Swahili',usd:1.20,usdOld:2.5,rating:4.5,offline:true,certificate:false,badge:'Swahili',badgeCls:'badge-lang',img:'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=40&h=40&fit=crop',myOwn:false},
+  {id:16,cat:'tech',title:'Kujifunza Python na Data Science — Swahili',instructor:'Daniel Mwangi',flag:'🇹🇿',country:'Tanzania',lang:'Swahili',usd:3.00,usdOld:6,rating:4.7,offline:false,certificate:true,badge:'New',badgeCls:'badge-green',img:'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=40&h=40&fit=crop',myOwn:false},
+  {id:17,cat:'business',title:'Ṣiṣe Iṣowo lori Instagram — Yoruba Guide',instructor:'Toyin Adesanya',flag:'🇳🇬',country:'Nigeria',lang:'Yoruba',usd:1.00,usdOld:2,rating:4.8,offline:false,certificate:false,badge:'Yoruba',badgeCls:'badge-lang',img:'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=40&h=40&fit=crop',myOwn:false},
+  {id:18,cat:'finance',title:'Imali Yethu — Personal Finance in Zulu',instructor:'Nomsa Dube',flag:'🇿🇦',country:'South Africa',lang:'Zulu',usd:2.00,usdOld:4,rating:4.6,offline:true,certificate:true,badge:'Offline',badgeCls:'badge-teal',img:'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=40&h=40&fit=crop',myOwn:false},
+  {id:19,cat:'photography',title:'Vídeo & Conteúdo para Redes Sociais — Global',instructor:'Sophie Martin',flag:'🇫🇷',country:'Global',lang:'Français',usd:3.00,usdOld:6,rating:4.9,offline:false,certificate:true,badge:'Global',badgeCls:'badge-navy',img:'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=40&h=40&fit=crop',myOwn:false},
+  {id:20,cat:'tech',title:'UI/UX Design for African Apps — Free Preview',instructor:'Tolu Adeyemi',flag:'🇳🇬',country:'Nigeria',lang:'English',usd:0,usdOld:0,rating:4.7,offline:false,certificate:false,badge:'Free',badgeCls:'badge-green',img:'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=380&fit=crop&q=80',iavatar:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop',myOwn:false},
+];
+let nextCourseId = 21;
+
+function langFlag(lang){
+  const map = {English:'🇬🇧',Français:'🇫🇷',Swahili:'🌍',Yoruba:'🌍',Hausa:'🌍',Igbo:'🌍',Amharic:'🌍',Zulu:'🌍',Hausa:'🌍'};
+  return map[lang]||'🌍';
 }
+
+function renderCourseCard(c){
+  const price = c.usd===0 ? '<span class="price" style="color:var(--green);font-weight:800;">FREE</span>' :
+    `<span class="price-old" style="font-size:12px;color:var(--gray);text-decoration:line-through;margin-right:4px;">${fmt(c.usdOld)}</span><span class="price" style="font-weight:800;color:var(--navy);">${fmt(c.usd)}</span>`;
+  const stars = '★'.repeat(Math.floor(c.rating)) + (c.rating%1>=0.5?'½':'') ;
+  const langBadge = `<span class="badge badge-lang">${langFlag(c.lang)} ${c.lang}</span>`;
+  const offlineBadge = c.offline ? `<span class="badge badge-teal">📥 Offline</span>` : '';
+  const certBadge = c.certificate ? `<span class="badge badge-navy">📜 Cert</span>` : '';
+  const mainBadge = c.badge ? `<span class="badge ${c.badgeCls}">${c.badge}</span>` : '';
+  return `<div class="card" onclick="go('detail')" data-cat="${c.cat}" data-country="${c.country}" data-lang="${c.lang}" data-offline="${c.offline}" data-cert="${c.certificate}" data-title="${c.title.toLowerCase()} ${c.instructor.toLowerCase()} ${c.country.toLowerCase()}">
+    <div class="card-thumb"><img src="${c.img}" alt="" loading="lazy"><div class="card-overlay"></div><div class="play-overlay"><div class="play-circle">▶</div></div></div>
+    <div class="card-body">
+      <div class="card-cat">${catLabel(c.cat)}</div>
+      <div class="card-title">${c.title}</div>
+      <div class="card-instructor"><img src="${c.iavatar}" alt="">${c.instructor} · ${c.flag}</div>
+      <div class="card-meta"><div><span class="stars">★★★★${c.rating>=5?'★':'☆'}</span><span class="rating">${c.rating}</span></div><div>${price}</div></div>
+      <div style="margin-top:7px;display:flex;gap:5px;flex-wrap:wrap;">${mainBadge}${offlineBadge}${certBadge}${langBadge}</div>
+    </div>
+  </div>`;
+}
+
+function catLabel(cat){
+  const m={digital:'Digital Marketing',tech:'Tech Skills',business:'Business',finance:'Finance',vocational:'Vocational',photography:'Photography',agriculture:'Agriculture',design:'Design'};
+  return m[cat]||cat;
+}
+
+function renderCourseGrid(){
+  const grid = document.getElementById('courseGrid');
+  if(!grid) return;
+  // Collect active sidebar filters
+  const checkedCountries = [...document.querySelectorAll('.sf-country:checked')].map(el=>el.value);
+  const checkedLangs = [...document.querySelectorAll('.sf-lang:checked')].map(el=>el.value);
+  const wantOffline = document.querySelector('.sf-feat[value="offline"]')?.checked;
+  const wantCert = document.querySelector('.sf-feat[value="cert"]')?.checked;
+  const wantFree = document.querySelector('.sf-feat[value="free"]')?.checked;
+  const q = (document.getElementById('searchInput')?.value||'').toLowerCase();
+
+  const filtered = courses.filter(c=>{
+    if(activeChip!=='all' && c.cat!==activeChip) return false;
+    if(checkedCountries.length && !checkedCountries.includes(c.country) && !checkedCountries.includes('Global')) return false;
+    if(checkedLangs.length && !checkedLangs.includes(c.lang)) return false;
+    if(wantOffline && !c.offline) return false;
+    if(wantCert && !c.certificate) return false;
+    if(wantFree && c.usd!==0) return false;
+    if(q && !`${c.title} ${c.instructor} ${c.country}`.toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  grid.innerHTML = filtered.map(renderCourseCard).join('');
+  const rc = document.getElementById('resultCount');
+  if(rc) rc.innerHTML = `Showing <strong>${filtered.length}</strong> of ${courses.length} courses`;
+  const nr = document.getElementById('noResults');
+  if(nr) nr.style.display = filtered.length===0 ? 'block' : 'none';
+  // Re-apply currency to new price els
+  updateAllPrices();
+}
+
+// ══ SEARCH & FILTER ══
+function filterCourses(){ renderCourseGrid(); }
 
 function setChip(el,cat){
   document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
   el.classList.add('active');
   activeChip=cat;
-  filterCourses();
+  renderCourseGrid();
 }
 
 function resetFilters(){
   activeChip='all';
   document.querySelectorAll('.filter-chip').forEach((c,i)=>{c.classList.toggle('active',i===0);});
+  document.querySelectorAll('.sf-country,.sf-lang,.sf-feat').forEach(el=>{el.checked=false;});
   const si=document.getElementById('searchInput');
   if(si)si.value='';
-  filterCourses();
+  renderCourseGrid();
+}
+
+// ══ PUBLISH COURSE ══
+function publishCourse(){
+  const title = document.getElementById('newCourseTitle')?.value.trim();
+  const cat = document.getElementById('newCourseCat')?.value;
+  const lang = document.getElementById('newCourseLang')?.value;
+  const countryVal = document.getElementById('newCourseCountry')?.value;
+  const currencyRaw = document.getElementById('newCourseCurrency')?.value; // e.g. "NGN|₦|1600"
+  const priceLocal = parseFloat(document.getElementById('newCoursePrice')?.value)||0;
+  const desc = document.getElementById('newCourseDesc')?.value.trim();
+
+  if(!title){showToast('⚠️ Please enter a course title','#e53e3e');return;}
+  if(!cat){showToast('⚠️ Please select a category','#e53e3e');return;}
+  if(!priceLocal && priceLocal!==0){showToast('⚠️ Please enter a price','#e53e3e');return;}
+
+  const [ccode,,crate] = currencyRaw.split('|');
+  const usd = priceLocal / parseFloat(crate);
+  const country = countryVal==='global' ? 'Global' : countryVal.replace(/ 🇳🇬|🇬🇭|🇰🇪|🇿🇦|🇺🇬|🇹🇿|🇷🇼|🇿🇲|🇿🇼|🇧🇼|🇸🇳|🇨🇮|🇪🇹/g,'').trim();
+  const countryFlag = countryVal==='global' ? '🌍' : countryVal.slice(-2);
+
+  const thumbs = [
+    'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=380&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1516321165247-4aa89a48be66?w=600&h=380&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&h=380&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600&h=380&fit=crop&q=80',
+  ];
+  const newCourse = {
+    id: nextCourseId++,
+    cat, title, instructor: currentUser?.name || 'You', flag: countryFlag,
+    country, lang, usd: parseFloat(usd.toFixed(2)), usdOld: parseFloat((usd*2).toFixed(2)),
+    rating: 0, offline: false, certificate: false, badge: 'New', badgeCls: 'badge-green',
+    img: thumbs[Math.floor(Math.random()*thumbs.length)],
+    iavatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop',
+    myOwn: true,
+  };
+  courses.push(newCourse);
+
+  // Reset form
+  ['newCourseTitle','newCoursePrice','newCourseDesc'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.value='';
+  });
+
+  renderCourseGrid();
+  renderInstructorCourses();
+  showToast('🎉 Course published! It\'s now live on the marketplace.');
+  go('instructor');
+}
+
+// ══ INSTRUCTOR COURSES RENDER ══
+function renderInstructorCourses(){
+  const el = document.getElementById('instructorCourseList');
+  if(!el) return;
+  const mine = courses.filter(c=>c.myOwn);
+  const staticRows = `
+    <div class="course-row"><div class="cr-thumb"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=120&h=88&fit=crop" alt=""></div><div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--navy);">Social Media Marketing for Nigerian Small Businesses</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Published · 32 lessons</div><div style="margin-top:4px;"><span class="badge badge-orange">Bestseller</span></div></div><div style="text-align:right;flex-shrink:0;"><div style="font-size:14px;font-weight:800;color:var(--teal);">${fmt(2.20)}</div><div style="font-size:11px;color:var(--gray);">876 students</div><div style="color:var(--orange);font-size:11px;">★ 4.9</div></div></div>
+    <div class="course-row"><div class="cr-thumb"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=120&h=88&fit=crop" alt=""></div><div style="flex:1;"><div style="font-size:13px;font-weight:700;color:var(--navy);">WhatsApp Business for Entrepreneurs</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Published · 18 lessons</div><div style="margin-top:4px;"><span class="badge badge-teal">Active</span></div></div><div style="text-align:right;flex-shrink:0;"><div style="font-size:14px;font-weight:800;color:var(--teal);">${fmt(1.40)}</div><div style="font-size:11px;color:var(--gray);">371 students</div><div style="color:var(--orange);font-size:11px;">★ 4.8</div></div></div>`;
+  const newRows = mine.map(c=>`
+    <div class="course-row" id="inst-course-${c.id}">
+      <div class="cr-thumb"><img src="${c.img}" alt=""></div>
+      <div style="flex:1;">
+        <div style="font-size:13px;font-weight:700;color:var(--navy);">${c.title}</div>
+        <div style="font-size:11px;color:var(--gray);margin-top:2px;">${c.country} · ${c.lang} · Just published</div>
+        <div style="margin-top:4px;"><span class="badge badge-green">New</span></div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+        <div style="font-size:14px;font-weight:800;color:var(--teal);">${fmt(c.usd)}</div>
+        <div style="font-size:11px;color:var(--gray);">0 students</div>
+        <button onclick="removeCourse(${c.id})" style="font-size:11px;color:#e53e3e;background:#fff5f5;border:1px solid #fed7d7;border-radius:5px;padding:2px 8px;cursor:pointer;font-family:inherit;">🗑 Remove</button>
+      </div>
+    </div>`).join('');
+  el.innerHTML = staticRows + newRows;
+}
+
+function removeCourse(id){
+  courses = courses.filter(c=>c.id!==id);
+  renderCourseGrid();
+  renderInstructorCourses();
+  showToast('Course removed from your list.');
 }
 
 // ══ VIDEO PLAYER ══
